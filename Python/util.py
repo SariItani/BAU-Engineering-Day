@@ -15,5 +15,6 @@ super_attack = s
 item = d
 """
 
+
 with open("../keys.toml") as keys:
     controls = parse(keys.read())
