@@ -127,40 +127,20 @@ def pose_detected(results, hand_num : int ,pose_command : Callable[[], bool]):
     curr_hand_index = results.multi_handedness[hand_num].classification[0].index
     return hand_raised(results, curr_hand_index) and pose_command()
 
-
-def make_m2_vec(results,hand_label : str,image_x : int, image_y : int):
-    req_hand = get_hand(results,hand_label)
-    if not req_hand:
-        return np.array([None,None])
+# depends on get_hand
+def make_arr(req_hand, image_x , image_y):
     middle_finger_tip = req_hand.landmark[12]
-    return np.array([middle_finger_tip.x * image_x,middle_finger_tip.y * image_y])
+    middle_finger_x, middle_finger_y = np.array([middle_finger_tip.x * image_x,middle_finger_tip.y * image_y])
+    reference_x, reference_y = np.array([image_x // 2 , image_y // 2])
+    return middle_finger_x, middle_finger_y, reference_x , reference_y
 
-def get_hand_orientation(m2_vector : np.ndarray[float,float]):
-    """Get the angle between the vector formed from the wrist vector to the middle finger
-     tip and the unit x normal vector. Let alpha be this angle.
-     0 <= ⍺ < 90 -> hand goes right
-     ⍺  = 90 exactly -> hand goes up
-     90 < ⍺ <= 180 -> hand goes left
-     In diamond angles, this becomes:
-     0 <= ⍺ < 1  or 3 < ⍺ <= 4 -> right 
-     ⍺ = 1 -> up
-     ⍺ = 3 -> down
-     1 < ⍺  <= 2 or 2 <= ⍺  < 3-> left
-     """
-    x,y = m2_vector
-    a = 0
-    if y >= 0 :
-       a = y / (x + y) if x >= 0 else 1 - x / (-x + y)
+@numba.njit
+def get_hand_orientation(req_tup : tuple[float,float,float,float]):
+    middle_finger_x, middle_finger_y, reference_x , reference_y  = req_tup
+    x_dir = ( "Left" if middle_finger_x < reference_x else "Right" )
+    if middle_finger_y !=  reference_y:
+        return ( "Top" if middle_finger_y < reference_y else "Bottom" )+ " " + x_dir
+    elif middle_finger_y == reference_y and middle_finger_x == reference_x:
+        return "Not moving"
     else:
-        a = 2-y/(-x-y) if x<0 else 3+x / (x-y)
-    
-    a = int(a)
-    if (0 <= a < 1) or (3 < a <= 4):
-        return "Right"
-    elif (a == 1):
-        return "Up"
-    elif(a == 3):
-        return "Down"
-    else:
-        return "Left"
-        
+        return x_dir

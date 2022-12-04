@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from mediapipe_primitives import FINGER_MCPS, get_hand, get_hand_orientation, make_m2_vec
+from mediapipe_primitives import FINGER_MCPS, get_hand, get_hand_orientation, make_arr
 cap = cv2.VideoCapture(0)
 cv2.namedWindow("TestWindow",cv2.WINDOW_KEEPRATIO)
 mp_hands = mp.solutions.hands
@@ -54,13 +54,14 @@ with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.7, m
         image_x, image_y , _ = image.shape
         landmarks = results.multi_hand_landmarks
         if landmarks:
-            m2_vec = make_m2_vec(results, "Left", image_x, image_y)
-            for num, hand in enumerate(landmarks):
-                # Render hands on screen
-                mp_drawing.draw_landmarks(image, hand, mp_hands.HAND_CONNECTIONS)
-                print("The middle finger is at the (real) coordinates :", m2_vec)
-                # if (m2_vec != None).all():
-                #     print(f"The left hand is going {get_hand_orientation(m2_vec)}")
+            left_hand = get_hand(results, "Left")
+            if left_hand :
+                m2_direction = get_hand_orientation(make_arr(left_hand, image_x, image_y))
+                for num, hand in enumerate(landmarks):
+                    # Render hands on screen
+                    mp_drawing.draw_landmarks(image, hand, mp_hands.HAND_CONNECTIONS)
+                    if m2_direction != None:
+                        print(f"The left hand is going {m2_direction}")
         cv2.imshow("TestWindow",image)
         # waitKey returns a binary number and so we bitmask (bitwise and) it with 255 (0xFF) and check if it is 117 (decimal representation of 'q')
         # see https://stackoverflow.com/questions/53357877/usage-of-ordq-and-0xff for more details.
