@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-from mediapipe_primitives import FINGER_MCPS, get_hand, get_hand_orientation, make_arr
+from mediapipe_primitives import FINGER_MCPS, hand_mean, hand_raised, landmark_rectifier
 cap = cv2.VideoCapture(0)
 cv2.namedWindow("TestWindow",cv2.WINDOW_KEEPRATIO)
 mp_hands = mp.solutions.hands
@@ -42,26 +42,30 @@ def palm(hand_landmarks):
 # def fist(hand_landmarks):
 #     return all(hand_landmarks[num + 3].y > hand_landmarks[num.y] for num in FINGER_MCPS[1:])
 
-def hands_recognized(results):
-    return [hand.classification[0].index for hand in results.multi_handedness]
-
-
-
 with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.7, max_num_hands=2) as hands:
     # makes the dialog exit when the x button is clicked
     while cv2.getWindowProperty("TestWindow", cv2.WND_PROP_VISIBLE) >= 1:
         image, results = generate_landmarks(hands)
-        image_x, image_y , _ = image.shape
+        image_width, image_height , _ = image.shape
         landmarks = results.multi_hand_landmarks
         if landmarks:
-            left_hand = get_hand(results, "Left")
-            if left_hand :
-                m2_direction = get_hand_orientation(make_arr(left_hand, image_x, image_y))
+                rectified_sides = landmark_rectifier(landmarks, image_width, image_height)
+                    # tup = make_tup(rectified_sides[0], image_width, image_height)
                 for num, hand in enumerate(landmarks):
-                    # Render hands on screen
                     mp_drawing.draw_landmarks(image, hand, mp_hands.HAND_CONNECTIONS)
-                    if m2_direction != None:
-                        print(f"The left hand is going {m2_direction}")
+                    if rectified_sides[0]:
+                        print(f"Left Hand is raised  : {hand_raised(rectified_sides, 'left')}.")
+                    else:
+                        print(f"Right Hand is raised  : {hand_raised(rectified_sides, 'right')}.")
+                
+                    
+                    
+        #     left_hand = get_hand(results, "Left")
+        #     if left_hand :
+        #         m2_direction = get_hand_orientation(make_arr(left_hand, image_x, image_y))
+        #             # Render hands on screen
+        #             if m2_direction != None:
+        #                 print(f"The left hand is going {m2_direction}")
         cv2.imshow("TestWindow",image)
         # waitKey returns a binary number and so we bitmask (bitwise and) it with 255 (0xFF) and check if it is 117 (decimal representation of 'q')
         # see https://stackoverflow.com/questions/53357877/usage-of-ordq-and-0xff for more details.

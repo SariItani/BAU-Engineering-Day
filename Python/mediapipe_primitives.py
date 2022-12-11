@@ -1,13 +1,15 @@
 import re
+import math as m
 import numpy as np
-import numpy.typing as npt
+from statistics import mean
 from dataclasses import dataclass
 from typing import Callable
 import operator
 import numba
 FINGER_MCPS = (1 , 5, 9 , 13, 17)
 FINGERTIPS = (4 , 8 , 12 , 16 , 20)
-
+AVERAGE_WRIST_MEAN_DIFF_X = 42
+AVERAGE_WRIST_MEAN_DIFF_Y = 162 
 @dataclass
 class Token:
     _type : str
@@ -20,9 +22,6 @@ class Operation:
     roperand : Token
     qualifier : Token
 
-
-def subscript_list():
-    ...
 
 def make_landmark(results, hand_index : int , landmark_num : int):
     return results.multi_hand_landmarks[hand_index].landmark[landmark_num]
@@ -38,7 +37,7 @@ def exclude_from_list(base_list : list, indices : list[int] | None = None):
 
 find_numbers = re.compile("\d+")
 
-def pose_dsl(hand_landmarks,command : str,cache_fn = True) -> None | bool:
+def pose_dsl(hand_landmarks,command : str,cache_fn = True):
 
     def recognize_str(fragment : str):
         
@@ -108,39 +107,60 @@ def pose_dsl(hand_landmarks,command : str,cache_fn = True) -> None | bool:
             return any(operators[operation](hand_landmarks[num1],hand_landmarks[num2]) for num1,num2 in zip(reference_list, opposite_list))
     return inner if cache_fn else inner()
 
+
+def hand_mean(hand_obj,axis: str, axis_multiplier : int) -> float :
+    return np.mean(np.array([ getattr(hand_obj.landmark[num], axis) * axis_multiplier for num in range(21) ]))
     
-def get_hand(results, hand_label : str):
-    res = [_ for hand,_ in zip(results.multi_handedness, results.multi_hand_landmarks) if hand.classification[0].label == hand_label]
-    return res[0] if res else None
+def landmark_rectifier(multi_hand_landmarks, img_width : int, image_height : int):
+    # [left, right] [0,right] [left, 0 ] []
+    if len(multi_hand_landmarks) == 2:
+        return [multi_hand_landmarks[0], multi_hand_landmarks[1]]
+    else:
+        return [multi_hand_landmarks[0], 0] if as_mean(multi_hand_landmarks[0].landmark[0].x , multi_hand_landmarks[0].landmark[0].y, img_width, image_height)[0]  < img_width // 2 else [0 , multi_hand_landmarks[0]]
+        
+def get_correct_side(rectified_list : list, side : str):
+    side = side.capitalize()
+    left, right = rectified_list
+    if left and side == "Left":
+        return left
+    elif right and side == "Right":
+        return right
 
-
-def hand_raised(results, hand_label : str):
+    
+def hand_raised(rectified_results, hand_label : str) -> bool:
     """
     detects if a specific hand is being raised if any hand is raised.
     hand_label can be string indicating the direction (e.g "left", "LEFT", "Left", etc...)
     """
-    return bool(get_hand(results, hand_label))
+    index = 0 # assume hand to be left
+    if hand_label.capitalize() == "Right":
+        index = 1
+    return rectified_results[index] != 0
 
-
-
-def pose_detected(results, hand_num : int ,pose_command : Callable[[], bool]):
-    curr_hand_index = results.multi_handedness[hand_num].classification[0].index
-    return hand_raised(results, curr_hand_index) and pose_command()
-
-# depends on get_hand
-def make_arr(req_hand, image_x , image_y):
-    middle_finger_tip = req_hand.landmark[12]
-    middle_finger_x, middle_finger_y = np.array([middle_finger_tip.x * image_x,middle_finger_tip.y * image_y])
-    reference_x, reference_y = np.array([image_x // 2 , image_y // 2])
-    return middle_finger_x, middle_finger_y, reference_x , reference_y
 
 @numba.njit
-def get_hand_orientation(req_tup : tuple[float,float,float,float]):
-    middle_finger_x, middle_finger_y, reference_x , reference_y  = req_tup
-    x_dir = ( "Left" if middle_finger_x < reference_x else "Right" )
-    if middle_finger_y !=  reference_y:
-        return ( "Top" if middle_finger_y < reference_y else "Bottom" )+ " " + x_dir
-    elif middle_finger_y == reference_y and middle_finger_x == reference_x:
-        return "Not moving"
-    else:
-        return x_dir
+def as_mean(hand_obj_x : float , hand_obj_y : float, image_width : int  , image_height: int) -> tuple[float,float] | float :
+    """
+    Transform the wrist landmark into a point approximately equal to mean of either hand, defined by certain constants.
+    """
+    x_fake_mean = hand_obj_x * image_width + AVERAGE_WRIST_MEAN_DIFF_X
+    y_fake_mean = hand_obj_y * image_height + AVERAGE_WRIST_MEAN_DIFF_Y 
+    return (x_fake_mean, y_fake_mean)
+
+
+def pose_detected(rectified_results, hand_num : int ,pose_command : Callable[[], bool]):
+    ...
+
+# depends on get_hand
+def make_tup(req_hand_obj, image_x : int , image_y : int):
+    x_mean , y_mean = hand_mean(req_hand_obj, "x", image_x), hand_mean(req_hand_obj, "y", image_y)
+    return  x_mean , y_mean , image_x / 2, image_y / 2
+
+
+def get_hand_offset(req_tup : tuple[float,float,int,int,int,int], previous_coords: tuple[float, float]):
+    x_mean , y_mean , reference_x , reference_y,   = req_tup
+    transform_coord = lambda coord, ref : ref if m.isclose(coord, ref) else coord
+    x_mean, y_mean = transform_coord(x_mean, reference_x), transform_coord(y_mean, reference_y)
+
+    # match(x_mean, y_mean):
+        
