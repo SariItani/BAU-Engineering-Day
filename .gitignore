@@ -2,4 +2,5 @@
 *.toml
 *.vscode
 *.idea
+__pycache__
 
