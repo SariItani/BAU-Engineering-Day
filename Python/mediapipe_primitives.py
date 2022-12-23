@@ -1,15 +1,16 @@
 import re
-import math as m
 import numpy as np
-from statistics import mean
 from dataclasses import dataclass
 from typing import Callable
 import operator
 import numba
+
+# get every 5th frame to ensure that the sensitivity constants can be used
 FINGER_MCPS = (1 , 5, 9 , 13, 17)
 FINGERTIPS = (4 , 8 , 12 , 16 , 20)
 AVERAGE_WRIST_MEAN_DIFF_X = 42
 AVERAGE_WRIST_MEAN_DIFF_Y = 162 
+CLOSE_X, CLOSE_Y = 0.0053268915986361565 , 0.051015715776357634
 @dataclass
 class Token:
     _type : str
@@ -151,16 +152,14 @@ def as_mean(hand_obj_x : float , hand_obj_y : float, image_width : int  , image_
 def pose_detected(rectified_results, hand_num : int ,pose_command : Callable[[], bool]):
     ...
 
+def adjacent_coord(coord_1 : float , coord_2 : float , axis = "x"):
+    return  abs(coord_1 - coord_2) <= CLOSE_X  if axis == "x" else abs(coord_1 - coord_2) <= CLOSE_Y
+
+def adjacent_pts(vec1 : tuple[float,float], vec2 : tuple[float,float]):
+    return adjacent_coord(vec1[0],vec2[0], "x") and adjacent_coord(vec1[0],vec2[0], "y")
+
 # depends on get_hand
 def make_tup(req_hand_obj, image_x : int , image_y : int):
-    x_mean , y_mean = hand_mean(req_hand_obj, "x", image_x), hand_mean(req_hand_obj, "y", image_y)
+    x_mean , y_mean = as_mean(req_hand_obj.landmark[0].x, req_hand_obj.landmark[0].y, image_x , image_y) 
     return  x_mean , y_mean , image_x / 2, image_y / 2
 
-
-def get_hand_offset(req_tup : tuple[float,float,int,int,int,int], previous_coords: tuple[float, float]):
-    x_mean , y_mean , reference_x , reference_y,   = req_tup
-    transform_coord = lambda coord, ref : ref if m.isclose(coord, ref) else coord
-    x_mean, y_mean = transform_coord(x_mean, reference_x), transform_coord(y_mean, reference_y)
-
-    # match(x_mean, y_mean):
-        
