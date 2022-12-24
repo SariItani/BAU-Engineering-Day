@@ -10,7 +10,7 @@ FINGER_MCPS = (1 , 5, 9 , 13, 17)
 FINGERTIPS = (4 , 8 , 12 , 16 , 20)
 AVERAGE_WRIST_MEAN_DIFF_X = 42
 AVERAGE_WRIST_MEAN_DIFF_Y = 162 
-CLOSE_X, CLOSE_Y = 0.0053268915986361565 , 0.051015715776357634
+CLOSE_X, CLOSE_Y = 11 , 11
 @dataclass
 class Token:
     _type : str
@@ -117,7 +117,7 @@ def landmark_rectifier(multi_hand_landmarks, img_width : int, image_height : int
     if len(multi_hand_landmarks) == 2:
         return [multi_hand_landmarks[0], multi_hand_landmarks[1]]
     else:
-        return [multi_hand_landmarks[0], 0] if as_mean(multi_hand_landmarks[0].landmark[0].x , multi_hand_landmarks[0].landmark[0].y, img_width, image_height)[0]  < img_width // 2 else [0 , multi_hand_landmarks[0]]
+        return [multi_hand_landmarks[0], 0] if multi_hand_landmarks[0].landmark[0].x < img_width // 2 else [0 , multi_hand_landmarks[0]]
         
 def get_correct_side(rectified_list : list, side : str):
     side = side.capitalize()

@@ -1,7 +1,7 @@
 from functools import partial
 import cv2
 import mediapipe as mp
-from mediapipe_primitives import FINGER_MCPS, adjacent_coord, adjacent_pts, hand_raised, landmark_rectifier, make_tup
+from mediapipe_primitives import FINGER_MCPS, adjacent_coord, hand_raised, landmark_rectifier
 
 cap = cv2.VideoCapture(0)
 cv2.namedWindow("TestWindow",cv2.WINDOW_KEEPRATIO)
@@ -35,7 +35,7 @@ def palm(hand_landmark):
 # def fist(hand_landmarks):
 #     return all(hand_landmarks[num + 3].y > hand_landmarks[num.y] for num in FINGER_MCPS[1:])
 
-with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.7, max_num_hands=2) as hands:
+with mp_hands.Hands(min_detection_confidence=0.6, min_tracking_confidence=0.5) as hands:
     # makes the dialog exit when the x button is clicked
     while cv2.getWindowProperty("TestWindow", cv2.WND_PROP_VISIBLE) >= 1:
         _ , frame = cap.read()
@@ -47,23 +47,28 @@ with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.7, m
         results = hands.process(image)
         image_width, image_height , _ = image.shape
         landmarks = results.multi_hand_landmarks
-        movement_region = [image_width // 4, image_height // 2]
+        movement_region = [image_width // 4,image_height // 2]
         write_simplex(image, "x", movement_region)
         if landmarks:
                 rectified_sides = landmark_rectifier(landmarks, image_width, image_height)
                 for num, hand in enumerate(landmarks):
                     mp_drawing.draw_landmarks(image, hand, mp_hands.HAND_CONNECTIONS)
                     if rectified_sides[0]:
-                        tup = make_tup(rectified_sides[0], image_width, image_height)
-                        x,y, _ , _ = tup
+                        wrist = rectified_sides[0].landmark[0]
+                        x,y = wrist.x * image_width, wrist.y * image_height
                         x_dir = "Left" if x < movement_region[0] else "Right"
                         y_dir = "Down" if y > movement_region[1] else "Up"
                         match (adjacent_coord(x, movement_region[0], "x"), adjacent_coord(y, movement_region[1], "y")):
                             
                             case (True,True):
                                 write_top_left(image,"Not moving")
-                            case (True,False) | (False, True):
-                                write_top_left(image,x_dir)
+                            
+                            case (True, False):
+                                write_top_left(image, y_dir)
+                            
+                            case (False,True):
+                                write_top_left(image, x_dir)
+
                             case (False, False):
                                 write_top_left(image,x_dir + " " + y_dir)
                     else:
