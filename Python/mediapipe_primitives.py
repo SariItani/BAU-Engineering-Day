@@ -10,7 +10,7 @@ FINGER_MCPS = (1 , 5, 9 , 13, 17)
 FINGERTIPS = (4 , 8 , 12 , 16 , 20)
 AVERAGE_WRIST_MEAN_DIFF_X = 42
 AVERAGE_WRIST_MEAN_DIFF_Y = 162 
-CLOSE_X, CLOSE_Y = 11 , 11
+CLOSE_X, CLOSE_Y = 20 , 20
 @dataclass
 class Token:
     _type : str
@@ -112,12 +112,12 @@ def pose_dsl(hand_landmarks,command : str,cache_fn = True):
 def hand_mean(hand_obj,axis: str, axis_multiplier : int) -> float :
     return np.mean(np.array([ getattr(hand_obj.landmark[num], axis) * axis_multiplier for num in range(21) ]))
     
-def landmark_rectifier(multi_hand_landmarks, img_width : int, image_height : int):
+def landmark_rectifier(multi_hand_landmarks, img_width : int):
     # [left, right] [0,right] [left, 0 ] []
     if len(multi_hand_landmarks) == 2:
         return [multi_hand_landmarks[0], multi_hand_landmarks[1]]
     else:
-        return [multi_hand_landmarks[0], 0] if multi_hand_landmarks[0].landmark[0].x < img_width // 2 else [0 , multi_hand_landmarks[0]]
+        return [multi_hand_landmarks[0], 0] if ( multi_hand_landmarks[0].landmark[0].x * img_width  )< img_width // 2 else [0 , multi_hand_landmarks[0]]
         
 def get_correct_side(rectified_list : list, side : str):
     side = side.capitalize()
@@ -152,8 +152,8 @@ def as_mean(hand_obj_x : float , hand_obj_y : float, image_width : int  , image_
 def pose_detected(rectified_results, hand_num : int ,pose_command : Callable[[], bool]):
     ...
 
-def adjacent_coord(coord_1 : float , coord_2 : float , axis = "x"):
-    return  abs(coord_1 - coord_2) <= CLOSE_X  if axis == "x" else abs(coord_1 - coord_2) <= CLOSE_Y
+def adjacent_coord(coord_1 : float , coord_2 : float , axis = "x", close_x = CLOSE_X, close_y = CLOSE_Y):
+    return  abs(coord_1 - coord_2) <=close_x if axis == "x" else abs(coord_1 - coord_2) <=close_y
 
 def adjacent_pts(vec1 : tuple[float,float], vec2 : tuple[float,float]):
     return adjacent_coord(vec1[0],vec2[0], "x") and adjacent_coord(vec1[0],vec2[0], "y")
