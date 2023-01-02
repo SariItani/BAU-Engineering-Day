@@ -4,4 +4,10 @@ scratch.py
 *.vscode
 *.idea
 __pycache__
-
+Logs
+Packages
+*.csproj
+UserSettings
+Library
+ProjectSettings
+Temp

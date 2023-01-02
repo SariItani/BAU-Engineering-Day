@@ -1,6 +1,8 @@
+import datetime
 from functools import partial
 import cv2
 import mediapipe as mp
+import keyboard as kb
 from mediapipe_primitives import FINGER_MCPS, adjacent_coord, hand_raised, landmark_rectifier
 cap = cv2.VideoCapture(0)
 cv2.namedWindow("TestWindow",cv2.WINDOW_KEEPRATIO)
@@ -56,6 +58,7 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) a
                         x,y = wrist.x * image_width, wrist.y * image_height
                         x_dir = "Left" if x < movement_region[0] else "Right"
                         y_dir = "Down" if y > ( movement_region[1] + 125 ) else "Up"
+                        hold = 0
                         match (adjacent_coord(x, movement_region[0], "x"), adjacent_coord(y, movement_region[1] + 125, "y")):
                             
                             case (True,True):
@@ -63,13 +66,11 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) a
                             
                             case (True, False):
                                 write_top_left(image, y_dir)
-                            
                             case (False,True):
                                 write_top_left(image, x_dir)
 
                             case (False, False):
                                 write_top_left(image,x_dir + " " + y_dir)
-                        print("Curr wrist coord: {}, {}\n Reference coords : {}, {}".format(x, y, movement_region[0], movement_region[1]))
                     else:
                         print(f"Right Hand is raised  : {hand_raised(rectified_sides, 'right')}.")
         cv2.imshow("TestWindow",image)
