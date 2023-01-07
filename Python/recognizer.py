@@ -5,7 +5,7 @@ import mediapipe as mp
 import keyboard as kb
 from mediapipe_primitives import FINGER_MCPS, adjacent_coord, hand_raised, landmark_rectifier
 cap = cv2.VideoCapture(0)
-cv2.namedWindow("TestWindow", cv2.WINDOW_KEEPRATIO)
+cv2.namedWindow("TestWindow")
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
@@ -42,14 +42,13 @@ def palm(hand_landmark):
 #     return all(hand_landmarks[num + 3].y > hand_landmarks[num.y] for num in FINGER_MCPS[1:])
 
 
-with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) as hands:
+with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) as hands:
     # makes the dialog exit when the x button is clicked
     while cv2.getWindowProperty("TestWindow", cv2.WND_PROP_VISIBLE) >= 1:
         _, frame = cap.read()
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         image: cv2.Mat = cv2.flip(image, 1)
         image.flags.writeable = False
-        image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         results = hands.process(image)
         image_width, image_height, _ = image.shape
@@ -57,7 +56,7 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) a
         movement_region = [image_width // 8, image_height * 5 // 8]
         write_simplex(image, "x", [movement_region[0],  movement_region[1]])
         if landmarks:
-            rectified_sides = landmark_rectifier(landmarks, image_width)
+            rectified_sides = landmark_rectifier(landmarks, image_width, image_height)
             for num, hand in enumerate(landmarks):
                 mp_drawing.draw_landmarks(
                     image, hand, mp_hands.HAND_CONNECTIONS)
@@ -66,8 +65,8 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) a
                     x, y = wrist.x * image_width, wrist.y * image_height
                     x_dir = "Left" if x < movement_region[0] else "Right"
                     y_dir = "Down" if y > (movement_region[1] + 125) else "Up"
-                    hold = 0
-                    match (adjacent_coord(x, movement_region[0], "x"), adjacent_coord(y, movement_region[1] + 125, "y")):
+                    adj_cord_x, adj_cord_y = adjacent_coord(x, movement_region[0], "x"),adjacent_coord(y, movement_region[1] + 125, "y", close_y=25)
+                    match (adj_cord_x , adj_cord_y):
 
                         case (True, True):
                             write_top_left(image, "Not moving")
@@ -75,11 +74,17 @@ with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.8) a
 
                         case (True, False):
                             write_top_left(image, y_dir)
+                            kb.send(y_dir)
+
                         case (False, True):
                             write_top_left(image, x_dir)
                             kb.send(x_dir)
+
                         case (False, False):
                             write_top_left(image, x_dir + " " + y_dir)
+                            print(y_dir)
+                            kb.send(x_dir)
+                            kb.send(y_dir)
                 else:
                     print(
                         f"Right Hand is raised  : {hand_raised(rectified_sides, 'right')}.")

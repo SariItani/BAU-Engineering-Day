@@ -112,12 +112,13 @@ def pose_dsl(hand_landmarks,command : str,cache_fn = True):
 def hand_mean(hand_obj,axis: str, axis_multiplier : int) -> float :
     return np.mean(np.array([ getattr(hand_obj.landmark[num], axis) * axis_multiplier for num in range(21) ]))
     
-def landmark_rectifier(multi_hand_landmarks, img_width : int):
+def landmark_rectifier(multi_hand_landmarks, img_width : int, img_height : int):
     # [left, right] [0,right] [left, 0 ] []
     if len(multi_hand_landmarks) == 2:
         return [multi_hand_landmarks[0], multi_hand_landmarks[1]]
     else:
-        return [multi_hand_landmarks[0], 0] if ( multi_hand_landmarks[0].landmark[0].x * img_width  )< img_width // 2 else [0 , multi_hand_landmarks[0]]
+        wrist_obj = multi_hand_landmarks[0].landmark[0] 
+        return [multi_hand_landmarks[0], 0] if as_mean(wrist_obj.x, wrist_obj.y , img_width, img_height)[0] < img_width // 2 else [0 , multi_hand_landmarks[0]]
         
 def get_correct_side(rectified_list : list, side : str):
     side = side.capitalize()
