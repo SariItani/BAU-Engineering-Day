@@ -1,0 +1,7 @@
+[Player]
+x-bounds : 9.2
+y-bounds : 16.6
+
+[Camera]
+x-bounds : 11.5
+y-bounds : 14.3

@@ -55,9 +55,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.2D.Tilemap.Extras", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Networking", "Unity.Services.Core.Networking.csproj", "{de14c1ad-a79d-ddea-d296-ea596f920bd6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.InternalAPIEngineBridge.001", "Unity.InternalAPIEngineBridge.001.csproj", "{8945c0be-bc83-0432-73f8-14a959ab3d58}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{db9b7f62-1254-2f61-8c0a-a0f17c4a61f8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.InternalAPIEngineBridge.001", "Unity.InternalAPIEngineBridge.001.csproj", "{8945c0be-bc83-0432-73f8-14a959ab3d58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.Services.Core.Configuration", "Unity.Services.Core.Configuration.csproj", "{53fe6b0a-597f-865a-6ca3-0d530a4446ad}"
 EndProject
@@ -188,10 +188,10 @@ Global
 		{3849f6dd-927b-99d6-89d8-83c640185e58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{de14c1ad-a79d-ddea-d296-ea596f920bd6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{de14c1ad-a79d-ddea-d296-ea596f920bd6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8945c0be-bc83-0432-73f8-14a959ab3d58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8945c0be-bc83-0432-73f8-14a959ab3d58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{db9b7f62-1254-2f61-8c0a-a0f17c4a61f8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{db9b7f62-1254-2f61-8c0a-a0f17c4a61f8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8945c0be-bc83-0432-73f8-14a959ab3d58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8945c0be-bc83-0432-73f8-14a959ab3d58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53fe6b0a-597f-865a-6ca3-0d530a4446ad}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53fe6b0a-597f-865a-6ca3-0d530a4446ad}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9499fefd-3bf3-cc42-7289-ccc9ac7905d9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

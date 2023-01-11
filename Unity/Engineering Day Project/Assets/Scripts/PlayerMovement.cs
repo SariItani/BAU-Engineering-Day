@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : BoundedObject
 {
     public float speed_modifier = 1.5f;
     private Rigidbody2D body;
