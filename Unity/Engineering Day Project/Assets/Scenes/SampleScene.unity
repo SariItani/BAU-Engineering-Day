@@ -340,9 +340,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 29.39547
-  orthographic: 0
-  orthographic size: 1.4681444
+  field of view: 21.109285
+  orthographic: 1
+  orthographic size: 2.956359
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -366,7 +366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985511577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.36, y: -8.23, z: -10}
+  m_LocalPosition: {x: 12.66, y: -6.91, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -386,11 +386,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2017128879}
-  ref_obj: {fileID: 0}
-  x_min: 11.5
-  x_max: 14.3
-  y_min: 0
-  y_max: 0
+  ref_obj: {fileID: 2017128880}
+  x_min: 0
+  x_max: 0
+  req_y: 0
+  req_x: 0
 --- !u!1 &1045702985
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045702988}
   - component: {fileID: 1045702987}
+  - component: {fileID: 1045702989}
   m_Layer: 0
   m_Name: cafeteria
   m_TagString: Untagged
@@ -475,6 +476,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045702989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045702985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e839fc3eebbe3b319ea0cf5b125aa2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1237612272
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,8 +706,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017128876}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.36, y: -8.23, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.29, y: -8.362, z: 0}
   m_LocalScale: {x: 0.3894375, y: 0.32462502, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -715,8 +730,6 @@ MonoBehaviour:
   ref_obj: {fileID: 0}
   x_min: 9.2
   x_max: 16.6
-  y_min: 0
-  y_max: 0
   speed_modifier: 1.35
 --- !u!61 &2017128881
 BoxCollider2D:
