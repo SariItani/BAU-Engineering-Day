@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PrototypeHeroDemo : MonoBehaviour
 {
@@ -22,6 +21,7 @@ public class PrototypeHeroDemo : MonoBehaviour
     private bool m_moving = false;
     private int m_facingDirection = 1;
     private float m_disableMovementTimer = 0.0f;
+    private bool m_facingRight = true;
 
     // Use this for initialization
     void Start()
@@ -69,14 +69,11 @@ public class PrototypeHeroDemo : MonoBehaviour
             m_moving = false;
 
         // Swap direction of sprite depending on move direction
-        if (inputRaw > 0)
+        // If pressing right arrow key but not facing the right
+        // or pressing left arrow key but facing right then flip
+        if ((inputRaw > 0 && !m_facingRight) || (inputRaw < 0 && m_facingRight))
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-
-        else if (inputRaw < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
+            Flip();
         }
         // sets the facing direction to be -1 or 1 depending on the
         // direction of the player. -1 is left, 1 is right, and 0 is not moving.
@@ -157,5 +154,11 @@ public class PrototypeHeroDemo : MonoBehaviour
         m_audioManager.PlaySound("Landing");
         // Spawn Dust
         SpawnDustEffect(m_LandingDust);
+    }
+
+    void Flip()
+    {
+        transform.Rotate(0f, 180f, 0f);
+        m_facingRight = !m_facingRight;
     }
 }
