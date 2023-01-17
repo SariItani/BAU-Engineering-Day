@@ -81,7 +81,7 @@ public class PrototypeHeroDemo : MonoBehaviour
         m_facingDirection = (int)Mathf.Sign(inputRaw);
 
         // SlowDownSpeed helps decelerate the characters when stopping
-        float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
+        float SlowDownSpeed = m_moving ? 1.0f : 0.0f;
 
         if (Input.GetKeyDown(KeyCode.F))
         {
