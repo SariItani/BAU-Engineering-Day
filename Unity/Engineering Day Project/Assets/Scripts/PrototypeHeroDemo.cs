@@ -7,6 +7,7 @@ public class PrototypeHeroDemo : MonoBehaviour
     [SerializeField] float m_maxSpeed = 4.5f;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] bool m_hideSword = false;
+    [SerializeField] GameObject bullet_prefab;
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_JumpDust;
@@ -81,6 +82,12 @@ public class PrototypeHeroDemo : MonoBehaviour
 
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Transform shoot_pos = transform.Find("ShootPosition");
+            Instantiate(bullet_prefab, shoot_pos.position, shoot_pos.rotation);
+        }
         // Set movement
         m_body2d.velocity = new Vector2(inputX * m_maxSpeed * SlowDownSpeed, m_body2d.velocity.y);
 
