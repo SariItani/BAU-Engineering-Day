@@ -83,7 +83,7 @@ public class PrototypeHeroDemo : MonoBehaviour
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.5f;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Transform shoot_pos = transform.Find("ShootPosition");
             Instantiate(bullet_prefab, shoot_pos.position, shoot_pos.rotation);
