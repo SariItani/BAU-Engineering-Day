@@ -1,9 +1,8 @@
-import datetime
 from functools import partial
 import cv2
 import mediapipe as mp
 import keyboard as kb
-from mediapipe_primitives import FINGER_MCPS, adjacent_coord, hand_raised, landmark_rectifier
+from mediapipe_primitives import FINGER_MCPS, adjacent_coord, landmark_rectifier
 cap = cv2.VideoCapture(0)
 cv2.namedWindow("TestWindow")
 mp_hands = mp.solutions.hands
@@ -38,8 +37,8 @@ write_top_left = partial(write_simplex, position=(50, 50))
 def palm(hand_landmark):
     return all(hand_landmark[num + 3].y < hand_landmark[num].y for num in FINGER_MCPS[1:]) and hand_landmark[4].x > hand_landmark[5].x
 
-# def fist(hand_landmarks):
-#     return all(hand_landmarks[num + 3].y > hand_landmarks[num.y] for num in FINGER_MCPS[1:])
+def fist(hand_landmarks):
+    return all(hand_landmarks.landmark[num + 3].y > hand_landmarks.landmark[num].y for num in FINGER_MCPS[1:])
 
 
 with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) as hands:
@@ -70,7 +69,6 @@ with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) a
 
                         case (True, True):
                             write_top_left(image, "Not moving")
-                            kb.send("space")
 
                         case (True, False):
                             write_top_left(image, y_dir)
@@ -82,12 +80,12 @@ with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) a
 
                         case (False, False):
                             write_top_left(image, x_dir + " " + y_dir)
-                            print(y_dir)
                             kb.send(x_dir)
                             kb.send(y_dir)
-                else:
-                    print(
-                        f"Right Hand is raised  : {hand_raised(rectified_sides, 'right')}.")
+
+                if rectified_sides[1]:
+                    if fist(rectified_sides[1]):
+                        kb.send("f")
         cv2.imshow("TestWindow", image)
         # waitKey returns a binary number and so we bitmask (bitwise and) it with 255 (0xFF) and check if it is 117 (decimal representation of 'q')
         # see https://stackoverflow.com/questions/53357877/usage-of-ordq-and-0xff for more details.
