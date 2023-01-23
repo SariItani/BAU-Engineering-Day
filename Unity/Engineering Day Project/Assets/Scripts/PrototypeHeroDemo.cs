@@ -72,14 +72,13 @@ public class PrototypeHeroDemo : MonoBehaviour
         // Swap direction of sprite depending on move direction
         // If pressing right arrow key but not facing the right
         // or pressing left arrow key but facing right then flip
-        if ((inputRaw > 0 && !m_facingRight) || (inputRaw < 0 && m_facingRight))
+        if ((inputX > 0 && !m_facingRight) || (inputX < 0 && m_facingRight))
         {
             Flip();
+            m_facingDirection = (int)Mathf.Sign(inputRaw);
         }
         // sets the facing direction to be -1 or 1 depending on the
         // direction of the player. -1 is left, 1 is right, and 0 is not moving.
-        m_facingDirection = (int)Mathf.Sign(inputRaw);
-
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.0f;
 
@@ -89,7 +88,14 @@ public class PrototypeHeroDemo : MonoBehaviour
             Instantiate(bullet_prefab, shoot_pos.position, shoot_pos.rotation);
         }
         // Set movement
-        m_body2d.velocity = new Vector2(inputX * m_maxSpeed * SlowDownSpeed, m_body2d.velocity.y);
+        if (Mathf.Abs(inputX) > Mathf.Epsilon)
+        {
+            m_body2d.velocity = new Vector2(Mathf.Sign(inputX) * m_maxSpeed * SlowDownSpeed, m_body2d.velocity.y);
+        }
+        else
+        {
+            m_body2d.velocity = new Vector2(inputX * m_maxSpeed * SlowDownSpeed, m_body2d.velocity.y);
+        }
 
         // Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -100,7 +106,7 @@ public class PrototypeHeroDemo : MonoBehaviour
 
         // -- Handle Animations --
         //Jump
-        if (Input.GetButtonDown("Jump") && m_grounded && m_disableMovementTimer < 0.0f)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && m_grounded && m_disableMovementTimer < 0.0f)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
