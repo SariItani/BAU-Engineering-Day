@@ -8,6 +8,7 @@ cv2.namedWindow("TestWindow")
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
+last_dir = None
 # the first joint in each finger , see the hand_landmarks image in the project directory.
 """
 In reality only two gestures need to be recognized,
@@ -69,6 +70,8 @@ with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) a
 
                         case (True, True):
                             write_top_left(image, "Not moving")
+                            if last_dir:
+                                kb.release(last_dir)
 
                         case (True, False):
                             write_top_left(image, y_dir)
@@ -76,11 +79,13 @@ with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) a
 
                         case (False, True):
                             write_top_left(image, x_dir)
-                            kb.send(x_dir)
+                            last_dir = x_dir
+                            kb.send(x_dir, do_release=False)
 
                         case (False, False):
                             write_top_left(image, x_dir + " " + y_dir)
-                            kb.send(x_dir)
+                            last_dir = x_dir
+                            kb.send(x_dir, do_release=False)
                             kb.send(y_dir)
 
                 if rectified_sides[1]:
