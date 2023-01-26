@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class Sound
@@ -41,7 +39,6 @@ public class AudioManager_PrototypeHero : MonoBehaviour
 {
     // Make it a singleton class that can be accessible everywhere
     public static AudioManager_PrototypeHero instance;
-
     [SerializeField]
     Sound[] m_sounds;
 
@@ -77,7 +74,6 @@ public class AudioManager_PrototypeHero : MonoBehaviour
                 return;
             }
         }
-
         Debug.LogWarning("AudioManager: Sound name not found in list: " + name);
     }
 }
