@@ -29,6 +29,7 @@ public class playerHealth : MonoBehaviour
             else
             {
                 currentHealth = 0;
+                Destroy(gameObject);
             }
         }
     }
@@ -38,4 +39,5 @@ public class playerHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
 }
