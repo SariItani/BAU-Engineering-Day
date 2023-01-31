@@ -7,6 +7,7 @@ __pycache__
 Logs
 Packages
 *.csproj
+*.sln
 UserSettings
 Library
 ProjectSettings
