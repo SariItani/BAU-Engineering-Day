@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PrototypeHeroDemo : MonoBehaviour
+public class PrototypeHeroDemo : DamagableObject
 {
 
     [Header("Variables")]
@@ -8,6 +8,8 @@ public class PrototypeHeroDemo : MonoBehaviour
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] bool m_hideSword = false;
     [SerializeField] GameObject bullet_prefab;
+    [SerializeField] int x_offset = 2;
+    [SerializeField] float bullet_delay = 2.0f;
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_JumpDust;
@@ -85,7 +87,10 @@ public class PrototypeHeroDemo : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             Transform shoot_pos = transform.Find("ShootPosition");
-            Instantiate(bullet_prefab, shoot_pos.position, shoot_pos.rotation);
+            // make sure to offset correctly depending on direction 
+            var bullet_obj = Instantiate(bullet_prefab, shoot_pos.position + new Vector3(m_facingDirection * x_offset, 0f, 0f), shoot_pos.rotation);
+            // clean up the bullet if it goes out of bounds
+            Destroy(bullet_obj, bullet_delay);
         }
         // Set movement
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
@@ -174,4 +179,5 @@ public class PrototypeHeroDemo : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
         m_facingRight = !m_facingRight;
     }
+
 }
