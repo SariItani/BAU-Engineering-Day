@@ -12,3 +12,5 @@ UserSettings
 Library
 ProjectSettings
 Temp
+*.meta
+*.cache
