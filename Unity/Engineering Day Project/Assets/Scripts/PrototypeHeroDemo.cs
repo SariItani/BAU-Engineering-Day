@@ -7,9 +7,6 @@ public class PrototypeHeroDemo : DamagableObject
     [SerializeField] float m_maxSpeed = 4.5f;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] bool m_hideSword = false;
-    [SerializeField] GameObject bullet_prefab;
-    [SerializeField] int x_offset = 2;
-    [SerializeField] float bullet_delay = 2.0f;
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_JumpDust;
@@ -84,14 +81,6 @@ public class PrototypeHeroDemo : DamagableObject
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.0f;
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Transform shoot_pos = transform.Find("ShootPosition");
-            // make sure to offset correctly depending on direction 
-            var bullet_obj = Instantiate(bullet_prefab, shoot_pos.position + new Vector3(m_facingDirection * x_offset, 0f, 0f), shoot_pos.rotation);
-            // clean up the bullet if it goes out of bounds
-            Destroy(bullet_obj, bullet_delay);
-        }
         // Set movement
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {

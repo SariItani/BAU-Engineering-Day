@@ -104,7 +104,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 31
-    spriteID: 656be8f9aead42a2ab29177ae91433c1
+    spriteID: c7f428103e4474f60beceb2b73877f16
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 63
       width: 18
       height: 55
-    spriteID: 84875e6f4ff1a1aff86a5d1da523c675
+    spriteID: ad22d12762018272db791a36e7d6d49b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,7 +148,7 @@ ScriptedImporter:
       y: 4
       width: 26
       height: 51
-    spriteID: 7c7269a8edc6950a48142ccd4664a0ae
+    spriteID: f738dd2222e03154287626a2da9d698f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 37
       width: 13
       height: 13
-    spriteID: dfce991dc855dcab0bbebc47b6aba4cc
+    spriteID: bbb7e963451012be5813242d111c75c9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 19
       height: 25
-    spriteID: b195aa2d7f71b120fa8e4a9229694a0b
+    spriteID: 38231d95c43b91ab3957219792c6f6b5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -214,7 +214,7 @@ ScriptedImporter:
       y: 4
       width: 12
       height: 28
-    spriteID: c1366403c4e683ae4b603d4eabc07507
+    spriteID: de80afb8d094e0cf2b30c5614fb22763
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -259,7 +259,7 @@ ScriptedImporter:
     spriteName: hand front
     isGroup: 0
     parentIndex: -1
-    spriteID: 656be8f9aead42a2ab29177ae91433c1
+    spriteID: c7f428103e4474f60beceb2b73877f16
     layerID: 9
     mosaicPosition: {x: 38, y: 4}
     flatten: 0
@@ -269,7 +269,7 @@ ScriptedImporter:
     spriteName: leg frontt
     isGroup: 0
     parentIndex: -1
-    spriteID: 84875e6f4ff1a1aff86a5d1da523c675
+    spriteID: ad22d12762018272db791a36e7d6d49b
     layerID: 13
     mosaicPosition: {x: 4, y: 63}
     flatten: 0
@@ -279,7 +279,7 @@ ScriptedImporter:
     spriteName: leg behind
     isGroup: 0
     parentIndex: -1
-    spriteID: 7c7269a8edc6950a48142ccd4664a0ae
+    spriteID: f738dd2222e03154287626a2da9d698f
     layerID: 22
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
@@ -289,7 +289,7 @@ ScriptedImporter:
     spriteName: head
     isGroup: 0
     parentIndex: -1
-    spriteID: dfce991dc855dcab0bbebc47b6aba4cc
+    spriteID: bbb7e963451012be5813242d111c75c9
     layerID: 11
     mosaicPosition: {x: 62, y: 37}
     flatten: 0
@@ -299,7 +299,7 @@ ScriptedImporter:
     spriteName: body
     isGroup: 0
     parentIndex: -1
-    spriteID: b195aa2d7f71b120fa8e4a9229694a0b
+    spriteID: 38231d95c43b91ab3957219792c6f6b5
     layerID: 18
     mosaicPosition: {x: 62, y: 4}
     flatten: 0
@@ -309,7 +309,7 @@ ScriptedImporter:
     spriteName: hand back
     isGroup: 0
     parentIndex: -1
-    spriteID: c1366403c4e683ae4b603d4eabc07507
+    spriteID: de80afb8d094e0cf2b30c5614fb22763
     layerID: 25
     mosaicPosition: {x: 89, y: 4}
     flatten: 0
