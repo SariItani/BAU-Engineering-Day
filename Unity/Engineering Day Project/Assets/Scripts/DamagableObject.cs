@@ -13,6 +13,8 @@ public class DamagableObject : MonoBehaviour
         }
     }
 
+    public int GetHealth() => health;
+
     void Die()
     {
         Destroy(gameObject);
