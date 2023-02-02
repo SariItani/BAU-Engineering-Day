@@ -13,6 +13,7 @@ public class Attack : MonoBehaviour
     public int punch_damage = 10;
 
     private Rigidbody2D rb;
+    private bool facingRight = true;
     void Start()
     {
         rb = bullet_prefab.GetComponent<Rigidbody2D>();
@@ -47,4 +48,6 @@ public class Attack : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position, attack_radius);
     }
+
+
 }
