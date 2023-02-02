@@ -21,7 +21,7 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
-    public float Direction { get { return facingRight ? 1 : -1; } }
+    // public float Direction { get { return facingRight ? 1 : -1; } }
     void Update()
     {
         animator.SetFloat("speed", speed);
@@ -64,10 +64,10 @@ public class playerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 
-    void Flip()
-    {
+    // void Flip()
+    // {
 
-        transform.Rotate(0f, 180f, 0f);
-        facingRight = !facingRight;
-    }
+    //     transform.Rotate(0f, 180f, 0f);
+    //     facingRight = !facingRight;
+    // }
 }
