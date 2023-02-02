@@ -5,9 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public float speed;
-    public Animator animator;
-    public Vector3 scaleChange;
-    bool isGrounded, isAttacking;
+    bool isGrounded;
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
@@ -17,11 +15,13 @@ public class playerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(rb);
     }
 
 
     // Update is called once per frame
+
+    // the direction of the player can only be set inside the actual class, but can be read from outside the class
+    public float Direction { get { return facingRight ? 1 : -1; } }
     void Update()
     {
         animator.SetFloat("speed", speed);
@@ -30,23 +30,7 @@ public class playerMovement : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
 
-        if (Input.GetAxisRaw("Horizontal") == -1f)
-        {
-            scaleChange = new Vector3(1f, 1f, 1f);
-        }
-        else if (Input.GetAxisRaw("Horizontal") == 1f)
-        {
-            scaleChange = new Vector3(-1f, 1f, 1f);
-        }
-
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            isAttacking = true;
-        }
-        else
-        {
-            isAttacking = false;
-        }
+        transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
 
         if(isGrounded)
         {
@@ -78,5 +62,12 @@ public class playerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+    }
+
+    void Flip()
+    {
+
+        transform.Rotate(0f, 180f, 0f);
+        facingRight = !facingRight;
     }
 }
