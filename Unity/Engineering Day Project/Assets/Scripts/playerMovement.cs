@@ -6,6 +6,7 @@ public class playerMovement : MonoBehaviour
 {
     public float speed;
     bool isGrounded;
+    public Animator animator;
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
@@ -54,9 +55,9 @@ public class playerMovement : MonoBehaviour
         {
             speed = 0.0f;
         }
-// Player speed execution
-        transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
-        transform.localScale = scaleChange;
+// // Player speed execution
+//         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
+//         transform.localScale = scaleChange;
     }
 
     private void OnDrawGizmos()
