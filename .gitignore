@@ -15,3 +15,4 @@ Temp
 *.meta
 *.cache
 obj
+*.sln
