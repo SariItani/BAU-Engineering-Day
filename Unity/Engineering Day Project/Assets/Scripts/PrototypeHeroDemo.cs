@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
-public class PrototypeHeroDemo : MonoBehaviour
+public class PrototypeHeroDemo : DamagableObject
 {
 
     [Header("Variables")]
     [SerializeField] float m_maxSpeed = 4.5f;
     [SerializeField] float m_jumpForce = 7.5f;
     [SerializeField] bool m_hideSword = false;
-    [SerializeField] GameObject bullet_prefab;
     [Header("Effects")]
     [SerializeField] GameObject m_RunStopDust;
     [SerializeField] GameObject m_JumpDust;
@@ -82,11 +81,6 @@ public class PrototypeHeroDemo : MonoBehaviour
         // SlowDownSpeed helps decelerate the characters when stopping
         float SlowDownSpeed = m_moving ? 1.0f : 0.0f;
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Transform shoot_pos = transform.Find("ShootPosition");
-            Instantiate(bullet_prefab, shoot_pos.position, shoot_pos.rotation);
-        }
         // Set movement
         if (Mathf.Abs(inputX) > Mathf.Epsilon)
         {
@@ -174,4 +168,5 @@ public class PrototypeHeroDemo : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
         m_facingRight = !m_facingRight;
     }
+
 }

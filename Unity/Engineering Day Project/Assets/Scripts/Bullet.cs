@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Start is called before the first frame update
+    public int bullet_damage = 10;
 
-    public float speed = 20;
-    public Rigidbody2D rb;
-
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        rb.velocity = transform.right * speed;
+        other.GetComponent<DamagableObject>().TakeDamage(bullet_damage);
+        Destroy(gameObject);
     }
+    // Update is called once per frame
 }

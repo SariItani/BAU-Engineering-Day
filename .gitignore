@@ -12,3 +12,7 @@ UserSettings
 Library
 ProjectSettings
 Temp
+*.meta
+*.cache
+obj
+*.sln

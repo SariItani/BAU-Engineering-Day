@@ -174,9 +174,9 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 1, y: 1}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 1.0000001
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -185,9 +185,9 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 53.1301
   orthographic: 1
-  orthographic size: 5.52
+  orthographic size: 2.98
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -211,7 +211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269240981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5299995, y: 2.5896006, z: -10}
+  m_LocalPosition: {x: -3.5299997, y: 1.3704003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,12 +333,12 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 845808948}
   m_Lens:
-    FieldOfView: 40
-    OrthographicSize: 5.52
+    FieldOfView: 53.1301
+    OrthographicSize: 2.98
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
-    ModeOverride: 0
+    ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
     m_SensorSize: {x: 1, y: 1}
@@ -358,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520058775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5299995, y: 2.5896006, z: -10}
+  m_LocalPosition: {x: -3.5299997, y: 1.3704003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1100,34 +1100,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1303554128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303554121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa55e3a8070f94c79e270f49a036016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxhealth: 10
---- !u!114 &1303554134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303554121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0398dfd97342066c8ca9a8d6f42e040, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 2005957796}
-  damage: 2
 --- !u!1 &1315516215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,8 +1253,6 @@ GameObject:
   - component: {fileID: 2005957792}
   - component: {fileID: 2005957791}
   - component: {fileID: 2005957793}
-  - component: {fileID: 2005957796}
-  - component: {fileID: 2005957795}
   - component: {fileID: 2005957797}
   - component: {fileID: 2005957798}
   m_Layer: 0
@@ -1353,7 +1323,7 @@ Transform:
   m_GameObject: {fileID: 2005957789}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 3.4474, y: -0.6006, z: 0}
-  m_LocalScale: {x: 0.9868398, y: 0.8589068, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1385,34 +1355,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6655827, y: 1.5213861}
   m_EdgeRadius: 0
---- !u!114 &2005957795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005957789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0398dfd97342066c8ca9a8d6f42e040, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSystem: {fileID: 1303554128}
-  damage: 2
---- !u!114 &2005957796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005957789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fa55e3a8070f94c79e270f49a036016, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxhealth: 10
 --- !u!50 &2005957797
 Rigidbody2D:
   serializedVersion: 4
@@ -1443,9 +1385,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2005957789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bdf51d2139ac2c5982a428f28b05b73, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9e579bdfa24fd6f9e8f9e05b11f547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 50
 --- !u!1 &2097556149
 GameObject:
   m_ObjectHideFlags: 0
