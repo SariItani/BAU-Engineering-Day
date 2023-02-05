@@ -13,17 +13,9 @@ public class playerMovement : MonoBehaviour
     public float jumpforce;
     private Rigidbody2D rb;
     private bool facingRight = true;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-
-    // Update is called once per frame
+    public float Direction => facingRight == true ? 1 : -1;
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
-    public float Direction { get { return facingRight ? 1 : -1; } }
     void Update()
     {
         animator.SetFloat("speed", speed);
