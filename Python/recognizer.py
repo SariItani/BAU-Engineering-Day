@@ -89,9 +89,7 @@ with mp_hands.Hands(min_detection_confidence=0.9, min_tracking_confidence=0.9) a
                             kb.send(y_dir)
 
                 if rectified_sides[1]:
-                    # add controls for punching, throwing, etc.. here.
-                    # such that each motion is assigned a hand gesture.
-                    if palm(rectified_sides[1]):
+                    if fist(rectified_sides[1]):
                         kb.send("f")
         cv2.imshow("TestWindow", image)
         # waitKey returns a binary number and so we bitmask (bitwise and) it with 255 (0xFF) and check if it is 117 (decimal representation of 'q')

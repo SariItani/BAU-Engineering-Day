@@ -5,16 +5,24 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public float speed;
+    public bool facingRight = true;
     bool isGrounded;
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
     public float jumpforce;
-    private bool facingRight = true;
+    private Rigidbody2D rb;
 
-    public float Direction => facingRight == true ? 1 : -1;
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+
+    // Update is called once per frame
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
+    public float Direction { get { return facingRight ? 1 : -1; } }
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
