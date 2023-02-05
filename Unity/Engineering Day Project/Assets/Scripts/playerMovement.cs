@@ -5,31 +5,28 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public float speed;
-    bool isGrounded;
+    bool isGrounded, isAttacking;
+    public Animator animator;
     public Transform groundCheck;
     public float groundDistance;
     public LayerMask groundMask;
     public float jumpforce;
+    private Rigidbody2D rb;
     private bool facingRight = true;
-
     public float Direction => facingRight == true ? 1 : -1;
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
     void Update()
     {
+        animator.SetFloat("speed", speed);
+        animator.SetBool("attacking", isAttacking);
+        // animator.SetInt("combo", combo);
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
 
-        var x_axis = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(x_axis * speed, 0);
-        // greater than zero or very faint touch
-        // Swap direction of sprite depending on move direction
-        // If pressing right arrow key but not facing the right
-        // or pressing left arrow key but facing right then flip
-        if ((x_axis > 0 && !facingRight) || (x_axis < 0 && facingRight))
-        {
-            Flip();
-        }
-        if (isGrounded)
+        transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
+
+        if(isGrounded)
         {
             Debug.Log("Ground Detected.");
             // if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
@@ -38,6 +35,22 @@ public class playerMovement : MonoBehaviour
             //     rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             // }
         }
+// Player speed determination
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 0.21f;
+        }
+        else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            speed = 0.1f;
+        }
+        else
+        {
+            speed = 0.0f;
+        }
+// // Player speed execution
+//         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
+//         transform.localScale = scaleChange;
     }
 
     private void OnDrawGizmos()
