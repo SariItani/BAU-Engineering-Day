@@ -7,6 +7,7 @@ public class playerMovement : MonoBehaviour
     public float speed;
     bool isGrounded;
     public Transform groundCheck;
+    public Animation animation;
     public float groundDistance;
     public LayerMask groundMask;
     public float jumpforce;
