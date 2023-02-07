@@ -51,6 +51,15 @@ public class playerMovement : MonoBehaviour
         {
             speed = 0.0f;
         }
+
+        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J))
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            isAttacking = false;
+        }
 // // Player speed execution
 //         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
 //         transform.localScale = scaleChange;
