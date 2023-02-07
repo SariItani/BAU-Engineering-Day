@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     public LayerMask groundMask;
     public float jumpforce;
     private Rigidbody2D rb;
-    private bool facingRight = true;
+    private bool facingRight = false;
     public float Direction => facingRight == true ? 1 : -1;
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
@@ -23,10 +23,10 @@ public class playerMovement : MonoBehaviour
         // animator.SetInt("combo", combo);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
+        var x_dir = Input.GetAxis("Horizontal");
+        transform.position += new Vector3(x_dir * speed, 0);
 
-        transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
-
-        if(isGrounded)
+        if (isGrounded)
         {
             Debug.Log("Ground Detected.");
             // if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
@@ -35,12 +35,12 @@ public class playerMovement : MonoBehaviour
             //     rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             // }
         }
-// Player speed determination
+        // Player speed determination
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 0.21f;
         }
-        else if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
             speed = 0.1f;
         }
@@ -48,14 +48,8 @@ public class playerMovement : MonoBehaviour
         {
             speed = 0.0f;
         }
-// // Player speed execution
-//         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
-//         transform.localScale = scaleChange;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+        if (x_dir < 0 && facingRight || x_dir > 0 && !facingRight)
+            Flip();
     }
 
     void Flip()

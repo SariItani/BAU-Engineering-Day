@@ -13,7 +13,7 @@ public class Attack : MonoBehaviour
     public float bullet_cleanuptime = 2.0f;
     public float attack_radius = 1.0f;
     public int punch_damage = 10;
-    public float x_offset = 0.05f;
+    public float x_offset = 0.5f;
     public bool canShoot = false;
     private Transform shoot_pos;
     private Vector3 pushed_vector;
@@ -59,6 +59,11 @@ public class Attack : MonoBehaviour
         {
             // shut the fuck up unity I KNOW THERE IS NO OBJECT
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(pushed_vector, attack_radius);
     }
 
 
