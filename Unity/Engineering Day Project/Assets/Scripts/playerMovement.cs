@@ -12,14 +12,14 @@ public class playerMovement : MonoBehaviour
     public LayerMask groundMask;
     public float jumpforce;
     private Rigidbody2D rb;
-    private bool facingRight = false;
+    private bool facingRight = true;
     public float Direction => facingRight == true ? 1 : -1;
 
     // the direction of the player can only be set inside the actual class, but can be read from outside the class
     void Update()
     {
-        animator.SetFloat("speed", speed);
-        animator.SetBool("attacking", isAttacking);
+        // animator.SetFloat("speed", speed);
+        // animator.SetBool("attacking", isAttacking);
         // animator.SetInt("combo", combo);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
