@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public float speed;
-    bool isGrounded, isAttacking;
+    bool isGrounded, isAttacking, throwing;
     public Animator animator;
     public Transform groundCheck;
     public float groundDistance;
@@ -22,11 +22,12 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         Debug.Log(rb);
     }
+
     void Update()
     {
         animator.SetFloat("Speed", speed);
         animator.SetBool("isAttacking", isAttacking);
-        // animator.SetBool("Throwing", throwing);
+        animator.SetBool("Throwing", throwing);
         animator.SetBool("OnGround", isGrounded);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
@@ -42,10 +43,19 @@ public class playerMovement : MonoBehaviour
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             }
         }
-// Player speed determination
+        if(Input.GetKey(KeyCode.T))
+        {
+            throwing = true;
+        }
+        else
+        {
+            throwing = false;
+        }
+
+        // Player speed determination
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
-            speed = 0.2f;
+            speed = 0.15f;
         }
         else
         {
