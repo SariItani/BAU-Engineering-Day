@@ -272,7 +272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fb3b57eb8d29f74cb91741ddfee8c7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8775e68fd49352ecbaa59609837c6a16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -652,7 +652,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -933,7 +933,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1004,7 +1004,7 @@ GameObject:
   - component: {fileID: 1114293335}
   - component: {fileID: 1114293334}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1068,7 +1068,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1386,7 +1386,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1574096638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce8d18a50e8102d7949cfb62b2bb8e6, type: 3}
+  m_Script: {fileID: 11500000, guid: e9254dcf7e5a03df68008ed77dfbb183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1615416790
@@ -1791,7 +1791,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
@@ -2066,7 +2066,7 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 11400000, guid: 749ddc6a589518a5bbd08d6699134838, type: 2}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: e9fe268097af3dead9a53ba293885985, type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}

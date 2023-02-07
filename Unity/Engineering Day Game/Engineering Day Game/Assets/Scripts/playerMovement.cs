@@ -45,7 +45,7 @@ public class playerMovement : MonoBehaviour
 // Player speed determination
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
-            speed = 0.11f;
+            speed = 0.2f;
         }
         else
         {
@@ -60,9 +60,6 @@ public class playerMovement : MonoBehaviour
         {
             isAttacking = false;
         }
-// // Player speed execution
-//         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
-//         transform.localScale = scaleChange;
     }
 
     private void OnDrawGizmos()
