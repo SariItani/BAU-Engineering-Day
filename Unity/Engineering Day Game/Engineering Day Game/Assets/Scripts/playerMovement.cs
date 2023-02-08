@@ -20,7 +20,7 @@ public class playerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Debug.Log(rb);
+        // Debug.Log(rb);
     }
 
     void Update()
@@ -36,10 +36,10 @@ public class playerMovement : MonoBehaviour
 
         if(isGrounded)
         {
-            Debug.Log("Ground Detected.");
+            // Debug.Log("Ground Detected.");
             if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Pressed W or Space");
+                // Debug.Log("Pressed W or Space");
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             }
         }
