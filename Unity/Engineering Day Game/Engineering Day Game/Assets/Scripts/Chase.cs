@@ -7,13 +7,7 @@ public class Chase : MonoBehaviour
     public GameObject player;
     public float speed, distanceBetween;
     private float distance;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
