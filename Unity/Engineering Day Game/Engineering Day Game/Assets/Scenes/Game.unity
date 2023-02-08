@@ -1908,4 +1908,4 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
-  jumpforce: 16
+  jumpforce: 20

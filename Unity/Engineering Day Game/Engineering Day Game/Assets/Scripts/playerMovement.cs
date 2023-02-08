@@ -37,7 +37,7 @@ public class playerMovement : MonoBehaviour
         if(isGrounded)
         {
             Debug.Log("Ground Detected.");
-            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
+            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Pressed W or Space");
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
