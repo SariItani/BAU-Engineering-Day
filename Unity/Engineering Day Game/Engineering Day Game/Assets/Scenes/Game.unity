@@ -800,6 +800,7 @@ MonoBehaviour:
   - {fileID: 76256463}
   enemyPrefabs:
   - {fileID: 4918952301130942001, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+  player: {fileID: 1771912810}
 --- !u!4 &758474137
 Transform:
   m_ObjectHideFlags: 0
