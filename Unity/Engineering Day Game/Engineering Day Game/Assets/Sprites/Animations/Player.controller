@@ -91,7 +91,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack
-  m_Speed: 0.1
+  m_Speed: 0.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4729947261283747929}
@@ -147,7 +147,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump
-  m_Speed: 0.1
+  m_Speed: 0.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6335280803359473220}
@@ -200,7 +200,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Idle
-  m_Speed: 0.1
+  m_Speed: 0.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4619546798436008115}
@@ -341,7 +341,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Throw
-  m_Speed: 0.1
+  m_Speed: 0.15
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3039414477933834433}

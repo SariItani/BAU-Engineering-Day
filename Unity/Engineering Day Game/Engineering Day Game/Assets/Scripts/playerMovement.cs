@@ -43,7 +43,7 @@ public class playerMovement : MonoBehaviour
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             }
         }
-        if(Input.GetKey(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             throwing = true;
         }

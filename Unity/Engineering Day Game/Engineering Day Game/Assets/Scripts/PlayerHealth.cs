@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         else
         {
             currentHealth = 0;
+            // Call the game over scene if the game object destroyed has the tag "Player"
         }
     }
 }
