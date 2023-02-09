@@ -2106,7 +2106,7 @@ MonoBehaviour:
     m_Bits: 1
   animator: {fileID: 1771912816}
   bullet_cleanuptime: 2
-  attack_radius: 1
+  attack_radius: 0.33
   punch_damage: 10
   x_offset: 0.05
   canShoot: 0
