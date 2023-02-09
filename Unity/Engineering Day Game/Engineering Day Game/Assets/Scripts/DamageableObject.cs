@@ -18,6 +18,22 @@ public class DamageableObject : MonoBehaviour
         }
     }
 
+    public void Heal(int heal)
+    {
+        if (currentHealth + heal > maxhealth)
+        {
+            currentHealth = maxhealth;
+        }
+        else
+        {
+            currentHealth += heal;
+            if (gameObject.tag == "Player")
+            {
+                healthBar.SetHealth(currentHealth);
+            }
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         if (!invincible)

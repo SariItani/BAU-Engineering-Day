@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6696550429498952819}
   - component: {fileID: 8868645338590506841}
   - component: {fileID: 3364194650576744772}
+  - component: {fileID: 3313502664235045263}
   m_Layer: 0
   m_Name: Apple Pixel
   m_TagString: Untagged
@@ -101,3 +102,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.12890935}
   serializedVersion: 2
   m_Radius: 4.61609
+--- !u!114 &3313502664235045263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612302107831765129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f966bd118ef6f0d39b7c9e99cc17b3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerHealth: {fileID: 0}
+  health: 20
