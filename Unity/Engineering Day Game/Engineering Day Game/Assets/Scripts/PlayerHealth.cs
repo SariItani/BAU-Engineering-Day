@@ -4,39 +4,15 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-
-    public int maxhealth = 20;
-    public int damage = 4;
-    public int currentHealth;
-
+    public DamageableObject damageableObject;
     public GameOver gameOver;
     public HealthBar healthBar;
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHealth = maxhealth;
-        healthBar.SetMaxHealth(maxhealth);
-    }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.J))
-    //     {
-    //         takeDamage(damage);
-    //     }
-    // }
-
-    public void takeDamage(int damage)
+    void Update()
     {
-        if (currentHealth >= damage)
-        { 
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-        }
-        else
+        healthBar.SetHealth(damageableObject.currentHealth);
+        if (damageableObject.currentHealth == 0)
         {
-            currentHealth = 0;
             // Call the game over scene if the game object destroyed has the tag "Player"
             gameOver.EndGame();
             // Destroy(gameObject);

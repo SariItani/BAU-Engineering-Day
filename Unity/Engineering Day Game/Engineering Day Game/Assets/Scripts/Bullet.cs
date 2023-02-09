@@ -16,10 +16,10 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<DamagableObject>() != null)
+        if (other.GetComponent<DamageableObject>() != null)
         {
             Debug.Log("Enemy hit");
-            other.GetComponent<DamagableObject>().TakeDamage(bullet_damage);
+            other.GetComponent<DamageableObject>().TakeDamage(bullet_damage);
             Destroy(gameObject);
         }
     }

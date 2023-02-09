@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class DamageableObject : MonoBehaviour
 {
-    public int health = 100;
+    public int maxhealth = 100;
+    public int currentHealth;
     public bool invincible = false;
+
+    void Start()
+    {
+        currentHealth = maxhealth;
+    }
 
     public void TakeDamage(int damage)
     {
         if (!invincible)
-            health -= damage;
-        if (health <= 0)
+            currenthealth -= damage;
+        if (currenthealth <= 0)
         {
             Die();
         }
