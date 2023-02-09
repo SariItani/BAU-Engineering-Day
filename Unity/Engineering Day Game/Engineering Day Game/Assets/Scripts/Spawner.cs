@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject[] enemyPrefabs;
     public GameObject player;
+    public float spawnRate = 5f;
+    float nextSpawn = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,9 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Time.time > nextSpawn)
         {
+            nextSpawn = Time.time + spawnRate;
             int randEnemy = Random.Range(0, enemyPrefabs.Length);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
 

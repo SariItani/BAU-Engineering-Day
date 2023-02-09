@@ -9,6 +9,11 @@ public class Chase : MonoBehaviour
     private float distance;
     
     // Update is called once per frame
+    void start()
+    {
+        player = GameObject.Find("Player");
+    }
+    
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
