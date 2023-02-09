@@ -17,8 +17,8 @@ public class DamageableObject : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if (!invincible)
-            currenthealth -= damage;
-        if (currenthealth <= 0)
+            currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             Die();
         }
