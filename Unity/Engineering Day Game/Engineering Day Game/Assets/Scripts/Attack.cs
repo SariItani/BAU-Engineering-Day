@@ -52,7 +52,7 @@ public class Attack : MonoBehaviour
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius, entityLayer);
         try
         {
-            enemy.GetComponent<DamagableObject>().TakeDamage(punch_damage);
+            enemy.GetComponent<DamageableObject>().TakeDamage(punch_damage);
             Debug.Log("Enemy hit");
         }
         catch (NullReferenceException)
