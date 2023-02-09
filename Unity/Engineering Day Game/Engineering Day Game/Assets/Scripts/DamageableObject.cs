@@ -22,6 +22,7 @@ public class DamageableObject : MonoBehaviour
         {
             Die();
         }
+        // player related
         if (gameObject.tag == "Player")
         {
             healthBar.SetHealth(currentHealth);
