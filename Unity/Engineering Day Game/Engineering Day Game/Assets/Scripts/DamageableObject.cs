@@ -20,12 +20,12 @@ public class DamageableObject : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (!invincible)
+            currentHealth -= damage;
         if (gameObject.tag == "Player")
         {
             healthBar.SetHealth(currentHealth);
         }
-        if (!invincible)
-            currentHealth -= damage;
         if (currentHealth <= 0)
         {
             Die();
