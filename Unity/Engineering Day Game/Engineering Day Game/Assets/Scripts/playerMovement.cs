@@ -26,8 +26,8 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", speed);
-        animator.SetBool("isAttacking", isAttacking);
-        animator.SetBool("Throwing", throwing);
+        // animator.SetBool("isAttacking", isAttacking);
+        // animator.SetBool("Throwing", throwing);
         animator.SetBool("OnGround", isGrounded);
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
@@ -43,14 +43,14 @@ public class playerMovement : MonoBehaviour
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             }
         }
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            throwing = true;
-        }
-        else
-        {
-            throwing = false;
-        }
+        // if(Input.GetKeyDown(KeyCode.T))
+        // {
+        //     throwing = true;
+        // }
+        // else
+        // {
+        //     throwing = false;
+        // }
 
         // Player speed determination
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
@@ -62,14 +62,14 @@ public class playerMovement : MonoBehaviour
             speed = 0.0f;
         }
 
-        if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J))
-        {
-            isAttacking = true;
-        }
-        else
-        {
-            isAttacking = false;
-        }
+    //     if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J))
+    //     {
+    //         isAttacking = true;
+    //     }
+    //     else
+    //     {
+    //         isAttacking = false;
+    //     }
     }
 
     private void OnDrawGizmos()
