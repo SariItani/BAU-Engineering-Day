@@ -12,25 +12,26 @@ public class DamageableObject : MonoBehaviour
     void Start()
     {
         currentHealth = maxhealth;
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetMaxHealth(maxhealth);
+        }
     }
 
     public void TakeDamage(int damage)
     {
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
         if (!invincible)
             currentHealth -= damage;
         if (currentHealth <= 0)
         {
             Die();
-        }
-        // player related
-        if (gameObject.tag == "Player")
-        {
-            healthBar.SetHealth(currentHealth);
-            if (currentHealth == 0)
+            if (gameObject.tag == "Player")
             {
-                // Call the game over scene if the game object destroyed has the tag "Player"
                 gameOver.EndGame();
-                // Destroy(gameObject);
             }
         }
     }
