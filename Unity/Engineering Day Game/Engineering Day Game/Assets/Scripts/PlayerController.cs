@@ -99,7 +99,14 @@ public class PlayerController : MonoBehaviour
     }
     void Punch()
     {
-        animator.SetTrigger("attackTrigger");
+        if(Mathf.Abs(speed) > 0.1f)
+        {
+            animator.SetTrigger("walkattackTrigger");
+        }
+        else
+        {
+            animator.SetTrigger("attackTrigger");
+        }
         animator.ResetTrigger("throwTrigger");
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
         DamageableObject.DamageObject(enemy, punch_damage);
