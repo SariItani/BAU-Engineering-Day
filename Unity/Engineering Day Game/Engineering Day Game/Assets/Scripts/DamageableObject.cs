@@ -27,10 +27,10 @@ public class DamageableObject : MonoBehaviour
         else
         {
             currentHealth += heal;
-            if (gameObject.tag == "Player")
-            {
-                healthBar.SetHealth(currentHealth);
-            }
+        }
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetHealth(currentHealth);
         }
     }
 
