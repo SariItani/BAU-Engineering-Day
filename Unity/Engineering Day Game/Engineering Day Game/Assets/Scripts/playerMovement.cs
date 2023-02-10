@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
             {
                 // Debug.Log("Pressed W or Space");
+                // animator.SetTrigger("jumpTrigger");
                 rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             }
         }

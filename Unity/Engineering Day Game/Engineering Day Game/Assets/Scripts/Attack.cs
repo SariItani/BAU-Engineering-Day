@@ -32,8 +32,8 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        animator.SetBool("isAttacking", isAttacking);
-        animator.SetBool("Throwing", throwing);
+        // animator.SetBool("isAttacking", isAttacking);
+        // animator.SetBool("Throwing", throwing);
 
         pushed_vector = shoot_pos.position + Utils.ToVector3(transform.GetComponent<playerMovement>().Direction * x_offset);
         if (Input.GetKeyDown(KeyCode.F))
@@ -44,8 +44,8 @@ public class Attack : MonoBehaviour
     }
     public void Shoot()
     {
-        isAttacking = false;
-        throwing = true;
+        animator.SetTrigger("throwTrigger");
+        animator.ResetTrigger("attackTrigger");
 
         // make sure to offset correctly depending on direction 
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
@@ -55,8 +55,8 @@ public class Attack : MonoBehaviour
     }
     public void Punch()
     {
-        isAttacking = true;
-        throwing = false;
+        animator.SetTrigger("attackTrigger");
+        animator.ResetTrigger("throwTrigger");
 
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius, entityLayer);
         try
