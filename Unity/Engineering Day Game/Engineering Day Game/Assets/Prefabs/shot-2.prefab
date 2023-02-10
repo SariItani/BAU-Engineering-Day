@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 684294924044653721}
   - component: {fileID: 684294924044653726}
   - component: {fileID: 684294924044653727}
-  - component: {fileID: 4707520794919090384}
+  - component: {fileID: 8109538174725995756}
   m_Layer: 0
   m_Name: shot-2
   m_TagString: Untagged
@@ -73,15 +73,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1893193255
-  m_SortingLayer: 1
+  m_SortingLayerID: 454325631
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4e17262a295e454a82ad31f72df4882, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.06, y: 0.04}
+  m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.03
---- !u!114 &4707520794919090384
+--- !u!114 &8109538174725995756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,11 +133,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 684294924044653724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4aa8ede9763c890aa58c2d5c6c5c56e, type: 3}
+  m_Script: {fileID: 11500000, guid: 36ae7540cde4db63abb0696547652d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_damage: 10
-  speed: 10
+  speed: 20
   layer:
     serializedVersion: 2
     m_Bits: 64

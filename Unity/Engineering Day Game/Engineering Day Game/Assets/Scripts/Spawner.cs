@@ -5,25 +5,23 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    public GameObject[] enemyPrefabs;
-    public GameObject player;
+    public GameObject BEAN;
+    private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        Debug.Log("Spotted the player : ");
-        Debug.Log(player);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            int randEnemy = Random.Range(0, enemyPrefabs.Length);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
 
-            Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+            Instantiate(BEAN, spawnPoints[randSpawnPoint].position, transform.rotation);
         }
     }
 }
