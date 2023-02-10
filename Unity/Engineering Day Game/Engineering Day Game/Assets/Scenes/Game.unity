@@ -1602,7 +1602,7 @@ MonoBehaviour:
   - {fileID: 1583904553}
   BEAN:
   - {fileID: 4513132256920630586, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
-  spawnRate: 4
+  spawnRate: 3
 --- !u!4 &758474137
 Transform:
   m_ObjectHideFlags: 0
@@ -5763,9 +5763,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   bullet_cleanuptime: 2
-  attack_radius: 1.5
+  attack_radius: 2.5
   punch_damage: 10
-  x_offset: 1.5
+  x_offset: 2.5
   canShoot: 0
 --- !u!1 &1894751770
 GameObject:

@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
+
+        transform.position += new Vector3(speed, 0);
+        
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
@@ -74,7 +77,6 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-        transform.position += new Vector3(speed, 0);
         animator.SetFloat("Speed", Mathf.Abs(speed));
         animator.SetBool("OnGround", isGrounded);
     }
