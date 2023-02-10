@@ -5767,7 +5767,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   bullet_cleanuptime: 2
-  attack_radius: 1.4
+  attack_radius: 0.7
   punch_damage: 10
   x_offset: 1.3
   canShoot: 0
