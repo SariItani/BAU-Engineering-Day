@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4918952301130942001, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_Name
-      value: Enemy (placeholder)
+      value: Enemy (placeholder) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942002, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942002, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_SortingLayerID
@@ -26,6 +26,18 @@ PrefabInstance:
     - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101,3 +113,5 @@ MonoBehaviour:
   maxhealth: 50
   currentHealth: 0
   invincible: 0
+  gameOver: {fileID: 0}
+  healthBar: {fileID: 0}

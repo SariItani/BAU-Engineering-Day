@@ -5,10 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
-    public GameObject BEAN;
+    public GameObject[] BEAN;
     private GameObject player;
 
-    public float spawnRate = 5f;
+    public float spawnRate = 4f;
     float nextSpawn = 0f;
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,10 @@ public class Spawner : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
+            int randEnemy = Random.Range(0, BEAN.Length);
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
 
-            Instantiate(BEAN, spawnPoints[randSpawnPoint].position, transform.rotation);
+            Instantiate(BEAN[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
         }
     }
 }

@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
         }
@@ -52,9 +52,12 @@ public class PlayerController : MonoBehaviour
         // please fix this shit
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
         var x_axis = Input.GetAxis("Horizontal");
-        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
+        if (isGrounded)
         {
-            rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            }
         }
 
         // Player speed determination
