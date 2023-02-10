@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
 
         transform.position += new Vector3(speed, 0);
-        
+
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
         var x_axis = Input.GetAxis("Horizontal");
-        if (isGrounded && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
             rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         }
