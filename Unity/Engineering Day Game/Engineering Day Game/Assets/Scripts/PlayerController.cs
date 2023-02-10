@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true, isAttacking = false, throwing = false;
     public Animator animator;
     public float groundDistance;
-    public LayerMask groundMask;
     public float jumpforce = 2.0f;
     public float Direction => facingRight == true ? 1 : -1;
 
