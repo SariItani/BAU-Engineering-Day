@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public System.Action AttackDelegate;
     [Header("Attack Properties")]
     public float bullet_cleanuptime = 2.0f;
-    public float attack_radius = 1.75f;
+    public float attack_radius = 2.5f;
     public int punch_damage = 10;
-    public float x_offset = 1.75f;
+    public float x_offset = 2.5f;
     public bool canShoot = false;
     // private vars
     private Transform shoot_pos;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // please fix this shit
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance);
+        // isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance);
         var x_axis = Input.GetAxis("Horizontal");
         if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
