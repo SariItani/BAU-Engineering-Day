@@ -52,16 +52,13 @@ public class PlayerController : MonoBehaviour
         // please fix this shit
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
         var x_axis = Input.GetAxis("Horizontal");
-        if (isGrounded)
+        if (isGrounded && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
-            }
+            rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         }
 
         // Player speed determination
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
         }
