@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class DamageableObject : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class DamageableObject : MonoBehaviour
             Die();
             if (gameObject.tag == "Player")
             {
+                if (Convert.ToInt32(score.ShowText()) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
+                {
+                    PlayerPrefs.SetString("Highscore", score.ShowText());
+                }
                 gameOver.EndGame();
             }
         }

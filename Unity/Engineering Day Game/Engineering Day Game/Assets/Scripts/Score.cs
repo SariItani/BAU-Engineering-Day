@@ -17,4 +17,9 @@ public class Score : MonoBehaviour
         number++;
         score.text = number.ToString();
     }
+
+    public string ShowText()
+    {
+        return score.text;
+    }
 }
