@@ -5758,7 +5758,7 @@ MonoBehaviour:
   bullet_prefab: {fileID: 684294924044653724, guid: 91442246d6b03dcc8ae34b4c540abd48, type: 3}
   entityLayer:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 128

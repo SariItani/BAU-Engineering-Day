@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
             AttackDelegate();
         }
 
-        // please fix this shit
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
         var x_axis = Input.GetAxis("Horizontal");
         if (isGrounded && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
