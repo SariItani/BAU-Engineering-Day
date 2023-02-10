@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("throwTrigger");
         animator.ResetTrigger("attackTrigger");
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
-        // var bullet_obj = Instantiate(bullet_prefab, Utils.ToVector3(pushed_vector), shoot_pos.rotation);
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
     }

@@ -23,6 +23,3 @@ public class Chase : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }
-
-// float direction = (player.transform.position - transform.position).normalized.x;
-// transform.LookAt(player.transform);
