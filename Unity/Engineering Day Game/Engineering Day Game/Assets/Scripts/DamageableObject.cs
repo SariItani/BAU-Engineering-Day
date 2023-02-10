@@ -54,12 +54,6 @@ public class DamageableObject : MonoBehaviour
         }
     }
 
-    // public void LateUpdate()
-    // {
-    //     transform.Rotate(0f, 180f, 0f);
-    //     facingRight = !facingRight;
-    // }
-
     void Die()
     {
         Destroy(gameObject);
@@ -80,5 +74,4 @@ public class DamageableObject : MonoBehaviour
             // shut the fuck up unity I KNOW THERE IS NO OBJECT
         }
     }
-
 }
