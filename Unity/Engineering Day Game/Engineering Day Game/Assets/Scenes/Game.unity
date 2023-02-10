@@ -2014,7 +2014,7 @@ MonoBehaviour:
   - {fileID: 4513132256920630586, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
   spawnRate: 3
   disabled: 0
-  maxSpawns: 20
+  maxSpawns: 0
 --- !u!4 &758474137
 Transform:
   m_ObjectHideFlags: 0
