@@ -8,9 +8,11 @@ public class DamageableObject : MonoBehaviour
     // player related
     public GameOver gameOver;
     public HealthBar healthBar;
+    public Score score;
 
     void Start()
     {
+        score = GameObject.Find("Score number").GetComponent<Score>();
         currentHealth = maxhealth;
         if (gameObject.tag == "Player")
         {
@@ -61,6 +63,10 @@ public class DamageableObject : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        if (gameObject.tag == "Enemy")
+        {
+            score.ScorePoint();
+        }
     }
 
     public static void DamageObject(Component obj, int damage)
