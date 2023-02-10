@@ -74,7 +74,6 @@ public class DamageableObject : MonoBehaviour
         try
         {
             obj.GetComponent<DamageableObject>().TakeDamage(damage);
-            Debug.Log("Enemy hit");
         }
         catch (System.NullReferenceException)
         {
