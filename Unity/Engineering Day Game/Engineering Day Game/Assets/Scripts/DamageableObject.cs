@@ -52,9 +52,28 @@ public class DamageableObject : MonoBehaviour
         }
     }
 
+    // public void LateUpdate()
+    // {
+    //     transform.Rotate(0f, 180f, 0f);
+    //     facingRight = !facingRight;
+    // }
+
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    public static void DamageObject(Component obj, int damage)
+    {
+        try
+        {
+            obj.GetComponent<DamageableObject>().TakeDamage(damage);
+            Debug.Log("Enemy hit");
+        }
+        catch (System.NullReferenceException)
+        {
+            // shut the fuck up unity I KNOW THERE IS NO OBJECT
+        }
     }
 
 }

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public DamageableObject damageableObject;
     public int damage;
+    private DamageableObject damageableObject;
 
     void Start()
     {
@@ -16,7 +14,9 @@ public class EnemyDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            damageableObject.TakeDamage(damage);
+            var player = collision.transform.GetComponent<DamageableObject>();
+            player.TakeDamage(damage);
+
         }
     }
 }

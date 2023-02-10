@@ -34,10 +34,10 @@ public class playerMovement : MonoBehaviour
 
         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed, 0);
 
-        if(isGrounded)
+        if (isGrounded)
         {
             // Debug.Log("Ground Detected.");
-            if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
             {
                 // Debug.Log("Pressed W or Space");
                 // animator.SetTrigger("jumpTrigger");
@@ -54,7 +54,7 @@ public class playerMovement : MonoBehaviour
         // }
 
         // Player speed determination
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
             speed = 0.15f;
         }
@@ -63,14 +63,14 @@ public class playerMovement : MonoBehaviour
             speed = 0.0f;
         }
 
-    //     if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J))
-    //     {
-    //         isAttacking = true;
-    //     }
-    //     else
-    //     {
-    //         isAttacking = false;
-    //     }
+        //     if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.J))
+        //     {
+        //         isAttacking = true;
+        //     }
+        //     else
+        //     {
+        //         isAttacking = false;
+        //     }
     }
 
     private void OnDrawGizmos()
