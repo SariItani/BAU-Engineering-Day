@@ -41,12 +41,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
 
         transform.position += new Vector3(speed, 0);
-        
+
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             AttackDelegate();
         }
-        if (Mathf.Abs(x_axis) > Mathf.Epsilon)
+        if (Mathf.Abs(x_axis) > 0)
 
         {
             speed = Mathf.Sign(x_axis) * 0.15f;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
         facingRight = !facingRight;
     }
-    public void Shoot()
+    void Shoot()
     {
         // make sure to offset correctly depending on direction 
         animator.SetTrigger("throwTrigger");
@@ -97,11 +97,11 @@ public class PlayerController : MonoBehaviour
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
     }
-    public void Punch()
+    void Punch()
     {
         animator.SetTrigger("attackTrigger");
         animator.ResetTrigger("throwTrigger");
-        Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius, entityLayer);
+        Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
         DamageableObject.DamageObject(enemy, punch_damage);
     }
 
