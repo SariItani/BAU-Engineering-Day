@@ -17,10 +17,10 @@ public class CoffeeMachine : MonoBehaviour
         {
             animator.SetTrigger("PlayerWantsCoffee");
         }
-        else if ()
-        {
+        // else if (collision.gameObject.tag == "Player" && !isMakingCoffee)
+        // {
 
-        }
+        // }
         if (collision.gameObject.tag == "Enemy")
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
