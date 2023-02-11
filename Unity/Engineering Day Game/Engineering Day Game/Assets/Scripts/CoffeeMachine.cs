@@ -9,7 +9,7 @@ public class CoffeeMachine : MonoBehaviour
 
     void Start()
     {
-        animator = gameObject.Find("Coffee Machine").GetComponent<Animator>();
+        animator = GameObject.Find("Coffee Machine").GetComponent<Animator>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
