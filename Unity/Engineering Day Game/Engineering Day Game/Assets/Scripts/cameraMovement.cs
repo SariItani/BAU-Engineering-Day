@@ -9,6 +9,9 @@ public class cameraMovement : MonoBehaviour
     
     void Update () 
     {
-        transform.position = new Vector3 (player.position.x + offset.x, player.position.y + offset.y, offset.z); // Camera follows the player with specified offset position
+        transform.position = new Vector3 (
+            Mathf.Clamp(player.position.x + offset.x, -3.00f, 24.00f),
+            Mathf.Clamp(player.position.y + offset.y, 0.27f, 4.59f),
+            offset.z);
     }
 }
