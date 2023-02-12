@@ -1549,6 +1549,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1294648060, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 1931547592}
+    - target: {fileID: 1294648060, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 4448045120973317577}

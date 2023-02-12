@@ -72,7 +72,6 @@ public class DamageableObject : MonoBehaviour
             }
             if (gameObject == boss)
             {
-                score.ScorePoint(pointforkill);
                 gameOver.WinGame(); // I was able to trace down the issue to this line over here, it doesn't get executed for some reason...
             }
         }
