@@ -6375,21 +6375,37 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1771912814}
+    - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
+      propertyPath: clampx0
+      value: -4.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
+      propertyPath: clampx1
+      value: 25.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
+      propertyPath: clampy0
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
+      propertyPath: clampy1
+      value: 4.64
+      objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 25.41
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalRotation.w
