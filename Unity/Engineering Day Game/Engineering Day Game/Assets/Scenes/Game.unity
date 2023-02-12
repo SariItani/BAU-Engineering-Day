@@ -6295,7 +6295,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.14596775, y: 1.4391553}
+  m_Offset: {x: -0.043061256, y: 1.4391556}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6306,7 +6306,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29203552, y: 16.112083}
+  m_Size: {x: 0.95363617, y: 16.112083}
   m_EdgeRadius: 0
 --- !u!212 &2138227301
 SpriteRenderer:
@@ -6377,19 +6377,19 @@ PrefabInstance:
       objectReference: {fileID: 1771912814}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx0
-      value: -4.62
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx1
-      value: 25.41
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampy0
-      value: 0.22
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampy1
-      value: 4.64
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_RootOrder
@@ -6401,7 +6401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.64
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.z
