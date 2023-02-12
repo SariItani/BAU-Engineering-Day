@@ -32,7 +32,7 @@ public class TakeCoffee : StateMachineBehaviour
         }
         else
         {
-            sprite.color = new Color(1, 1, 1, 0.8f);
+            sprite.color = new Color(1, 1, 1, 0.9f);
         }
     }
 

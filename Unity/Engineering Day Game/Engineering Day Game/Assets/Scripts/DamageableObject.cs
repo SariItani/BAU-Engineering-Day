@@ -1,10 +1,12 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DamageableObject : MonoBehaviour
 {
     public int maxhealth = 100;
     public int currentHealth;
+    public int pointforkill;
     public bool invincible = false;
     // player related
     public GameOver gameOver;
@@ -16,6 +18,10 @@ public class DamageableObject : MonoBehaviour
         score = GameObject.Find("Score number").GetComponent<Score>();
         currentHealth = maxhealth;
         if (gameObject.tag == "Player")
+        {
+            healthBar.SetMaxHealth(maxhealth);
+        }
+        if (gameObject.tag == "Boss")
         {
             healthBar.SetMaxHealth(maxhealth);
         }
@@ -45,6 +51,10 @@ public class DamageableObject : MonoBehaviour
         {
             healthBar.SetHealth(currentHealth);
         }
+        if (gameObject.tag == "Boss")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
         if (currentHealth <= 0)
         {
             Die();
@@ -64,7 +74,12 @@ public class DamageableObject : MonoBehaviour
         Destroy(gameObject);
         if (gameObject.tag == "Enemy")
         {
-            score.ScorePoint();
+            score.ScorePoint(pointforkill);
+        }
+        if (gameObject.tag == "Boss")
+        {
+            score.ScorePoint(pointforkill);
+            SceneManager.LoadScene(5);
         }
     }
 
