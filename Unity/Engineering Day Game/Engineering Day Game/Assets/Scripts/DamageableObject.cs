@@ -66,21 +66,17 @@ public class DamageableObject : MonoBehaviour
                 }
                 gameOver.EndGame();
             }
+            if (gameObject.tag == "Boss")
+            {
+                gameOver.WinGame();
+            }
         }
     }
 
     void Die()
     {
+        score.ScorePoint(pointforkill);
         Destroy(gameObject);
-        if (gameObject.tag == "Enemy")
-        {
-            score.ScorePoint(pointforkill);
-        }
-        if (gameObject.tag == "Boss")
-        {
-            score.ScorePoint(pointforkill);
-            SceneManager.LoadScene(5);
-        }
     }
 
     public static void DamageObject(Component obj, int damage)

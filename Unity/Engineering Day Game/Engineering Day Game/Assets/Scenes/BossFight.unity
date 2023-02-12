@@ -829,6 +829,7 @@ GameObject:
   - component: {fileID: 386884145}
   - component: {fileID: 386884144}
   - component: {fileID: 386884143}
+  - component: {fileID: 386884151}
   m_Layer: 0
   m_Name: Camera (1)
   m_TagString: Untagged
@@ -1131,6 +1132,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &386884151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386884142}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf39b6d5aa53fd66395d977b8aedc604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 8300000, guid: 343ba78c0f11bb76ba3d205ff6f6b427, type: 3}
+  win: {fileID: 8300000, guid: 1f9a79132bcb0ec938b49c0fa0dcff53, type: 3}
+  lose: {fileID: 8300000, guid: e63162fa0fd09a7c2a52795597c31c2b, type: 3}
 --- !u!1 &448004627
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,6 +4572,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8028486008925100818, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
+      propertyPath: win
+      value: 
+      objectReference: {fileID: 8300000, guid: 1f9a79132bcb0ec938b49c0fa0dcff53, type: 3}
+    - target: {fileID: 8028486008925100818, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
+      propertyPath: lose
+      value: 
+      objectReference: {fileID: 8300000, guid: e63162fa0fd09a7c2a52795597c31c2b, type: 3}
+    - target: {fileID: 8028486008925100818, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8028486008925100818, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: 343ba78c0f11bb76ba3d205ff6f6b427, type: 3}
     - target: {fileID: 8028486008925100819, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
       propertyPath: m_RootOrder
       value: 0
