@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public System.Action AttackDelegate;
     private AudioSource audioData;
+    public AudioClip hop, punch;
+
     [Header("Attack Properties")]
     public float bullet_cleanuptime = 2.0f;
     public float attack_radius = 2.5f;
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
             rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            audioData.clip = hop;
+            audioData.Play();
         }
 
         // Player speed determination
@@ -110,7 +114,9 @@ public class PlayerController : MonoBehaviour
         }
         animator.ResetTrigger("throwTrigger");
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
-        audioData.Play(0);
+        audioData.clip = punch;
+        audioData.Play();
+        
         DamageableObject.DamageObject(enemy, punch_damage);
     }
 

@@ -312,6 +312,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 128
+  hop: {fileID: 8300000, guid: a65f8fb97f42aa97cbce76c6ed21dc6f, type: 3}
+  punch: {fileID: 8300000, guid: 74314b65df35a051b8312f441596bd80, type: 3}
   bullet_cleanuptime: 2
   attack_radius: 0.7
   punch_damage: 10
