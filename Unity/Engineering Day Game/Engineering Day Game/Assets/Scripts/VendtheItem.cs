@@ -6,6 +6,7 @@ public class VendtheItem : StateMachineBehaviour
     Rigidbody2D rb;
     public GameObject[] vendingItems;
     SpriteRenderer sprite;
+    AudioSource audioData;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -14,7 +15,8 @@ public class VendtheItem : StateMachineBehaviour
         spawnPoint = GameObject.Find("Vend Spawn").transform;
         rb = animator.GetComponent<Rigidbody2D>();
         sprite = rb.GetComponent<SpriteRenderer>();
-
+        audioData = rb.GetComponent<AudioSource>();
+        audioData.Play(0);
         sprite.color = new Color(1, 1, 1, 1);
     }
 
