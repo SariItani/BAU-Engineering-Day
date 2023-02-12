@@ -6,13 +6,15 @@ public class WantCoffee : StateMachineBehaviour
     Rigidbody2D rb;
     public float radius;
     SpriteRenderer sprite;
+    AudioSource audioData;
     
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       player = GameObject.FindWithTag("Player").transform;
-       rb = animator.GetComponent<Rigidbody2D>();
-       sprite = rb.GetComponent<SpriteRenderer>();
+        player = GameObject.FindWithTag("Player").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
+        sprite = rb.GetComponent<SpriteRenderer>();
+        audioData = rb.GetComponent<AudioSource>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -35,6 +37,7 @@ public class WantCoffee : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       animator.ResetTrigger("PlayerWantsCoffee");
+        animator.ResetTrigger("PlayerWantsCoffee");
+        audioData.Play(0);
     }
 }
