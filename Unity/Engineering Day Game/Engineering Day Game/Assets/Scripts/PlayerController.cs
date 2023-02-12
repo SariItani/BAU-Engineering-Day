@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask entityLayer;
     public LayerMask groundMask;
     public System.Action AttackDelegate;
+    private AudioSource audioData;
     [Header("Attack Properties")]
     public float bullet_cleanuptime = 2.0f;
     public float attack_radius = 2.5f;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioData = GetComponent<AudioSource>();
         AttackDelegate = Punch;
         shoot_pos = transform.Find("ShootPosition");
         groundCheck = transform.Find("GroundCheck");
@@ -108,6 +110,7 @@ public class PlayerController : MonoBehaviour
         }
         animator.ResetTrigger("throwTrigger");
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
+        audioData.Play(0);
         DamageableObject.DamageObject(enemy, punch_damage);
     }
 
