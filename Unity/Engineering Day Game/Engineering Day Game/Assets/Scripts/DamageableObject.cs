@@ -13,6 +13,8 @@ public class DamageableObject : MonoBehaviour
     public HealthBar healthBar;
     public Score score;
 
+    GameObject boss;
+
     void Start()
     {
         score = GameObject.Find("Score number").GetComponent<Score>();
@@ -25,6 +27,8 @@ public class DamageableObject : MonoBehaviour
         {
             healthBar.SetMaxHealth(maxhealth);
         }
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        Debug.Log(boss);
     }
 
     public void Heal(int heal)
@@ -57,7 +61,7 @@ public class DamageableObject : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            Die();
+            // Die();
             if (gameObject.tag == "Player")
             {
                 if (Convert.ToInt32(score.ShowText()) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
@@ -66,10 +70,12 @@ public class DamageableObject : MonoBehaviour
                 }
                 gameOver.EndGame();
             }
-            if (gameObject.tag == "Boss")
+            if (gameObject == boss)
             {
                 gameOver.WinGame();
+                score.ScorePoint(pointforkill);
             }
+            Die();
         }
     }
 
