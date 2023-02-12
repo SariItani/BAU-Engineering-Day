@@ -38,8 +38,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vendingItems:
-  - {fileID: 7215955078725817279, guid: 9ed77220bec220235888a01ade8a413e, type: 3}
-  - {fileID: 123761661766350016, guid: c63565ab5783a095ba12f40b1174063b, type: 3}
+  - {fileID: 3617132610661414286, guid: 0bc728b1d41aebd7595327d65cd170aa, type: 3}
+  - {fileID: 6414921349628119752, guid: 71b908fcf8d797f0eabefe91782a61d8, type: 3}
+  - {fileID: 2852172780557664208, guid: 20c714af14ed8eaa6b6f7984cac01c1d, type: 3}
+  - {fileID: 5536452809482698068, guid: 836b577528cd3d66f97e9f17b0245865, type: 3}
+  - {fileID: 2182848336557934740, guid: 94b78f5eec5cad111ac23659b1cb1912, type: 3}
+  - {fileID: 1683819833078012189, guid: 8cf7c7d8112d45afb802df3d2c1ce945, type: 3}
+  - {fileID: 5565705855356586853, guid: d9cfb2c4c82e328b9b56940384c841f8, type: 3}
+  - {fileID: 7606671792392871763, guid: 7c3775f1eb9f306bd8d28e9632a19006, type: 3}
+  - {fileID: 4517970453059084473, guid: 8f137f2f5eacb886d939a30772282c4f, type: 3}
+  - {fileID: 117268974634112615, guid: d48308a4ff9e79db88ee307bb9e19e9f, type: 3}
+  - {fileID: 943018927136800612, guid: 9903b35bacb3a99428342d00db9259f8, type: 3}
+  - {fileID: 8791375915521069723, guid: f217594bef933e49d893d436af551187, type: 3}
+  - {fileID: 5929050250091369058, guid: f6b5912a6d1301f2e9827ec60a546136, type: 3}
 --- !u!114 &-391260128147856415
 MonoBehaviour:
   m_ObjectHideFlags: 1
