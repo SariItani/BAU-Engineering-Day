@@ -61,7 +61,7 @@ public class DamageableObject : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            // Die();
+            Die();
             if (gameObject.tag == "Player")
             {
                 if (Convert.ToInt32(score.ShowText()) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
@@ -72,10 +72,9 @@ public class DamageableObject : MonoBehaviour
             }
             if (gameObject == boss)
             {
-                gameOver.WinGame();
                 score.ScorePoint(pointforkill);
+                gameOver.WinGame(); // I was able to trace down the issue to this line over here, it doesn't get executed for some reason...
             }
-            Die();
         }
     }
 
