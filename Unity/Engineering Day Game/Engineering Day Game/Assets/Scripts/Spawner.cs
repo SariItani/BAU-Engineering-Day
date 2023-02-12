@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     public float spawnRate;
     public bool disabled = false;
     public int maxSpawns;
-    float nextSpawn = 0f;
+    float nextSpawn = 4f;
     private int spawns = 0;
     // Start is called before the first frame update
     void Start()
