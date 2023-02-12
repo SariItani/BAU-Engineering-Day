@@ -1,9 +1,11 @@
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
     public Text score;
+    public int levelScore;
     int number;
 
     void Start()
@@ -16,6 +18,10 @@ public class Score : MonoBehaviour
     {
         number++;
         score.text = number.ToString();
+        if (number >= levelScore)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     public string ShowText()

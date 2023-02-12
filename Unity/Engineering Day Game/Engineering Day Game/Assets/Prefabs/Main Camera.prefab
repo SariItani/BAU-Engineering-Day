@@ -101,8 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5f1a19872d54a2c866b87e6083948c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6249378260657077464, guid: 5101b741da4b5a225a74899c3d45e4d4, type: 3}
   offset: {x: 0, y: 2, z: -10}
+  clampx0: -19.5
+  clampx1: 42.5
+  clampy0: -1.81
+  clampy1: 2.64
 --- !u!108 &25374757011861461
 Light:
   m_ObjectHideFlags: 0
