@@ -6,13 +6,15 @@ public class cameraMovement : MonoBehaviour
 {
     public Transform player;
     public Vector3 offset;
+    public float clampx0, clampx1, clampy0, clampy1;
+    // -3.00f, 24.00f
+    // 0.27f, 4.59f
     
     void Update () 
     {
         transform.position = new Vector3 (
-            Mathf.Clamp(player.position.x + offset.x, -3.00f, 24.00f),
-            Mathf.Clamp(player.position.y + offset.y, 0.27f, 4.59f),
+            Mathf.Clamp(player.position.x + offset.x, clampx0, clampx1),
+            Mathf.Clamp(player.position.y + offset.y, clampy0, clampy1),
             offset.z);
-        // Camera follows the player with specified offset position
     }
 }

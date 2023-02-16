@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask entityLayer;
     public LayerMask groundMask;
     public System.Action AttackDelegate;
+    private AudioSource audioData;
+    public AudioClip hop, punch;
+
     [Header("Attack Properties")]
     public float bullet_cleanuptime = 2.0f;
     public float attack_radius = 2.5f;
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioData = GetComponent<AudioSource>();
         AttackDelegate = Punch;
         shoot_pos = transform.Find("ShootPosition");
         groundCheck = transform.Find("GroundCheck");
@@ -57,6 +61,8 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
         {
             rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            audioData.clip = hop;
+            audioData.Play();
         }
 
         // Player speed determination
@@ -93,15 +99,24 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("throwTrigger");
         animator.ResetTrigger("attackTrigger");
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
-        // var bullet_obj = Instantiate(bullet_prefab, Utils.ToVector3(pushed_vector), shoot_pos.rotation);
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
     }
     void Punch()
     {
-        animator.SetTrigger("attackTrigger");
+        if(Mathf.Abs(speed) > 0.1f)
+        {
+            animator.SetTrigger("walkattackTrigger");
+        }
+        else
+        {
+            animator.SetTrigger("attackTrigger");
+        }
         animator.ResetTrigger("throwTrigger");
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
+        audioData.clip = punch;
+        audioData.Play();
+        
         DamageableObject.DamageObject(enemy, punch_damage);
     }
 

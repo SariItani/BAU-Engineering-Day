@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Chase : MonoBehaviour
 {
-    public float speed;
+    public float speed, distanceBetween;
     private GameObject player;
 
     void Start()
@@ -20,9 +20,9 @@ public class Chase : MonoBehaviour
             // so rotate by 180 degrees
             transform.Rotate(0f, 180f, 0);
         }
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        if (x_diff <= distanceBetween)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
     }
 }
-
-// float direction = (player.transform.position - transform.position).normalized.x;
-// transform.LookAt(player.transform);

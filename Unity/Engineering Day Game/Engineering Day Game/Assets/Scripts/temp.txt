@@ -1,0 +1,785 @@
+using UnityEngine;
+
+public class Bullet : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public int bullet_damage = 10;
+
+    private Rigidbody2D rb;
+    public float speed = 20;
+    public LayerMask layer;
+
+    void Start()
+    {
+        rb = transform.GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * speed;
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<DamageableObject>() != null)
+        {
+            Debug.Log("Enemy hit");
+            other.GetComponent<DamageableObject>().TakeDamage(bullet_damage);
+            Destroy(gameObject);
+        }
+    }
+}
+using UnityEngine;
+
+public class Chase : MonoBehaviour
+{
+    public float speed, distanceBetween;
+    private GameObject player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        var x_diff = (transform.position - player.transform.position).x;
+        if (x_diff >= 0 && Mathf.Abs(transform.rotation.eulerAngles.y) != 180)
+        {
+            // BEAN is to the right of the player, look to the left ( BEAN is originally looking to the right)
+            // so rotate by 180 degrees
+            transform.Rotate(0f, 180f, 0);
+        }
+        if (x_diff <= distanceBetween)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+    }
+}
+using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
+
+public class DamageableObject : MonoBehaviour
+{
+    public int maxhealth = 100;
+    public int currentHealth;
+    public int pointforkill;
+    public bool invincible = false;
+    // player related
+    public GameOver gameOver;
+    public HealthBar healthBar;
+    public Score score;
+
+    GameObject boss;
+
+    void Start()
+    {
+        score = GameObject.Find("Score number").GetComponent<Score>();
+        currentHealth = maxhealth;
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetMaxHealth(maxhealth);
+        }
+        if (gameObject.tag == "Boss")
+        {
+            healthBar.SetMaxHealth(maxhealth);
+        }
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        Debug.Log(boss);
+    }
+
+    public void Heal(int heal)
+    {
+        if (currentHealth + heal > maxhealth)
+        {
+            currentHealth = maxhealth;
+        }
+        else
+        {
+            currentHealth += heal;
+        }
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!invincible)
+            currentHealth -= damage;
+        if (gameObject.tag == "Player")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+        if (gameObject.tag == "Boss")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
+        if (currentHealth <= 0)
+        {
+            Die();
+            if (gameObject.tag == "Player")
+            {
+                if (Convert.ToInt32(score.ShowText()) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
+                {
+                    PlayerPrefs.SetString("Highscore", score.ShowText());
+                }
+                gameOver.EndGame();
+            }
+            if (gameObject == boss)
+            {
+                gameOver.WinGame(); // I was able to trace down the issue to this line over here, it doesn't get executed for some reason...
+            }
+        }
+    }
+
+    void Die()
+    {
+        score.ScorePoint(pointforkill);
+        Destroy(gameObject);
+    }
+
+    public static void DamageObject(Component obj, int damage)
+    {
+        try
+        {
+            obj.GetComponent<DamageableObject>().TakeDamage(damage);
+        }
+        catch (System.NullReferenceException)
+        {
+            // shut the fuck up unity I KNOW THERE IS NO OBJECT
+        }
+    }
+}
+using UnityEngine;
+
+public class EnemyDamage : MonoBehaviour
+{
+    public int damage;
+    private DamageableObject damageableObject;
+
+    void Start()
+    {
+        damageableObject = GameObject.Find("Player").GetComponent<DamageableObject>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            var player = collision.transform.GetComponent<DamageableObject>();
+            player.TakeDamage(damage);
+        }
+    }
+}
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameOver : MonoBehaviour
+{
+    public void EndGame()
+    {
+        Debug.Log("Game Over.");
+        SceneManager.LoadScene(4);
+    }
+
+    public void WinGame()
+    {
+        Debug.Log("YOU WIN!!!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Heal : MonoBehaviour
+{
+    public GameObject player;
+    public DamageableObject playerHealth;
+    public int health;
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.Find("Player");
+        playerHealth = player.GetComponent<DamageableObject>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            playerHealth.Heal(health);
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class HealthBar : MonoBehaviour
+{
+    public Slider slider;
+    public Gradient gradient;
+    public Image fill;
+
+    public void SetMaxHealth(int health)
+    {
+        slider.maxValue = health;
+        slider.value = health;
+
+        fill.color = gradient.Evaluate(1f);
+    }
+
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+    public void PlayGame ()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting the Game...");
+        Application.Quit();
+    }
+
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PauseMenu : MonoBehaviour
+{
+    public static bool gameisPaused = false;
+    public GameObject pauseMenuUI;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gameisPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+    
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1;
+        gameisPaused = false;
+    }
+
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0;
+        gameisPaused = true;
+    }
+
+    public void Restart()
+    {
+        Resume();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+}
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [Header("Movement Stuff")]
+    public float speed;
+    private bool isGrounded = true;
+    public Animator animator;
+    public float groundDistance;
+    public float jumpforce = 2.0f;
+    public float Direction => facingRight == true ? 1 : -1;
+
+    [Header("Required Objects and Delegates")]
+    public GameObject bullet_prefab;
+    public LayerMask entityLayer;
+    public LayerMask groundMask;
+    public System.Action AttackDelegate;
+    private AudioSource audioData;
+    public AudioClip hop, punch;
+
+    [Header("Attack Properties")]
+    public float bullet_cleanuptime = 2.0f;
+    public float attack_radius = 2.5f;
+    public int punch_damage = 10;
+    public float x_offset = 2.5f;
+    public bool canShoot = false;
+    // private vars
+    private Transform shoot_pos;
+    private Transform groundCheck;
+    private Vector3 pushed_vector;
+    private Rigidbody2D rb;
+    private bool facingRight = true;
+    // the direction of the player can only be set inside the actual class, but can be read from outside the class
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        audioData = GetComponent<AudioSource>();
+        AttackDelegate = Punch;
+        shoot_pos = transform.Find("ShootPosition");
+        groundCheck = transform.Find("GroundCheck");
+        if (canShoot)
+        {
+            AttackDelegate = Shoot;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
+
+        transform.position += new Vector3(speed, 0);
+
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            AttackDelegate();
+        }
+
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
+        var x_axis = Input.GetAxis("Horizontal");
+        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
+        {
+            rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+            audioData.clip = hop;
+            audioData.Play();
+        }
+
+        // Player speed determination
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            AttackDelegate();
+        }
+        if (Mathf.Abs(x_axis) > 0)
+
+        {
+            speed = Mathf.Sign(x_axis) * 0.15f;
+        }
+        else
+        {
+            speed = 0;
+        }
+        if (x_axis < 0 && facingRight || x_axis > 0 && !facingRight)
+        {
+            Flip();
+        }
+        animator.SetFloat("Speed", Mathf.Abs(speed));
+        animator.SetBool("OnGround", isGrounded);
+    }
+
+    void Flip()
+    {
+
+        transform.Rotate(0f, 180f, 0f);
+        facingRight = !facingRight;
+    }
+    void Shoot()
+    {
+        // make sure to offset correctly depending on direction 
+        animator.SetTrigger("throwTrigger");
+        animator.ResetTrigger("attackTrigger");
+        var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
+        // clean up the bullet if it goes out of bounds
+        Destroy(bullet_obj, bullet_cleanuptime);
+    }
+    void Punch()
+    {
+        if(Mathf.Abs(speed) > 0.1f)
+        {
+            animator.SetTrigger("walkattackTrigger");
+        }
+        else
+        {
+            animator.SetTrigger("attackTrigger");
+        }
+        animator.ResetTrigger("throwTrigger");
+        Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
+        audioData.clip = punch;
+        audioData.Play();
+        
+        DamageableObject.DamageObject(enemy, punch_damage);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(pushed_vector, attack_radius);
+    }
+}
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Restart : MonoBehaviour
+{
+    public void RestartGame()
+    {
+        Debug.Log("Game Restarting...");
+        SceneManager.LoadScene(0);
+    }
+}
+using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
+
+public class Score : MonoBehaviour
+{
+    public Text score;
+    public int levelScore;
+    int number;
+
+    void Start()
+    {
+        number = 0;
+        score.text = number.ToString();
+    }
+    
+    public void ScorePoint(int points)
+    {
+        number += points;
+        score.text = number.ToString();
+        if (Convert.ToInt32(score.text) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
+        {
+            PlayerPrefs.SetString("Highscore", score.text);
+        }
+        if (number >= levelScore)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    public string ShowText()
+    {
+        return score.text;
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class SetHighScore : MonoBehaviour
+{
+    TMP_Text text;
+    private string score;
+    // Start is called before the first frame update
+    void Start()
+    {
+        text = GetComponent<TextMeshProUGUI>();
+        text.text = PlayerPrefs.GetString("Highscore", "0");
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SetMajor : MonoBehaviour
+{
+    public TMPro.TMP_Dropdown dropdown;
+    private string major;
+    private int majorIndex;
+    // Start is called before the first frame update
+    void Start()
+    {
+        dropdown = GetComponent<TMPro.TMP_Dropdown>();
+        dropdown.value = PlayerPrefs.GetInt("Major Index", 0);
+        dropdown.options[dropdown.value].text = PlayerPrefs.GetString("Major", "Computer");
+    }
+    public void ChoseMajor()
+    {
+        majorIndex = dropdown.value;
+        major = dropdown.options[majorIndex].text;
+        PlayerPrefs.SetString("Major", major);
+        PlayerPrefs.SetInt("Major Index", dropdown.value);
+        Debug.Log(major);
+        Debug.Log(majorIndex);
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+
+public class SettingsMenu : MonoBehaviour
+{
+    public AudioMixer audioMixer;
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
+    }
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Spawner : MonoBehaviour
+{
+    public Transform[] spawnPoints;
+    public GameObject[] BEAN;
+
+    public float spawnRate;
+    public bool disabled = false;
+    public int maxSpawns;
+    float nextSpawn = 4f;
+    private int spawns = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (disabled)
+            maxSpawns = -1;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time > nextSpawn && ((spawns <= maxSpawns) || (maxSpawns == 0)))
+        {
+            nextSpawn = Time.time + spawnRate;
+            int randEnemy = Random.Range(0, BEAN.Length);
+            int randSpawnPoint = Random.Range(0, spawnPoints.Length);
+            Instantiate(BEAN[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+            spawns++;
+        }
+    }
+}
+using UnityEngine;
+
+public class TakeCoffee : StateMachineBehaviour
+{
+    Transform player;
+    Transform spawnPoint;
+    Rigidbody2D rb;
+    public GameObject mug;
+    public float radius;
+    SpriteRenderer sprite;
+    
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       player = GameObject.FindWithTag("Player").transform;
+       spawnPoint = GameObject.Find("Coffee Spawn").transform;
+       rb = animator.GetComponent<Rigidbody2D>();
+       sprite = rb.GetComponent<SpriteRenderer>();
+       Instantiate(mug, spawnPoint.position, spawnPoint.rotation);
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (Vector2.Distance(player.position, rb.position) <= radius)
+        {
+            sprite.color = new Color(1, 1, 1, 1);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                animator.SetTrigger("PlayerTakeCoffee");
+            }
+        }
+        else
+        {
+            sprite.color = new Color(1, 1, 1, 0.9f);
+        }
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       animator.ResetTrigger("PlayerTakeCoffee");
+    }
+}
+using UnityEngine;
+
+class Utils
+{
+
+    public static Vector2 ToVector2(Vector3 ref_vec) => new(ref_vec.x, ref_vec.y);
+    public static bool ArrayNotEmpty<T>(T[] array) where T : class
+    {
+        if (array == null || array.Length == 0)
+            return false;
+        return true;
+    }
+    public static Vector3 ToVector3(Vector2 ref_vec) => new(ref_vec.x, ref_vec.y, 0);
+    public static Vector3 ToVector3(float x_coord = 0, float y_coord = 0) => new(x_coord, y_coord, 0);
+
+    public static Vector2 ToVector2(float x_coord = 0, float y_coord = 0)
+    {
+        return new(x_coord, y_coord);
+    }
+
+    public static Vector3 OffsetVectorX(Vector3 base_vec, float offset, float direction) => base_vec + ToVector3(x_coord: direction * offset);
+}using UnityEngine;
+
+public class Vend : StateMachineBehaviour
+{
+    Transform player;
+    Rigidbody2D rb;
+    public float radius;
+    SpriteRenderer sprite;
+    
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       player = GameObject.FindWithTag("Player").transform;
+       rb = animator.GetComponent<Rigidbody2D>();
+       sprite = rb.GetComponent<SpriteRenderer>();
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (Vector2.Distance(player.position, rb.position) <= radius)
+        {
+            sprite.color = new Color(1, 1, 1, 0.8f);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                animator.SetTrigger("Vend");
+            }
+        }
+        else
+        {
+            sprite.color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       animator.ResetTrigger("Vend");
+    }
+}
+using UnityEngine;
+
+public class VendtheItem : StateMachineBehaviour
+{
+    Transform spawnPoint;
+    Rigidbody2D rb;
+    public GameObject[] vendingItems;
+    SpriteRenderer sprite;
+    AudioSource audioData;
+    
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+    //    player = GameObject.FindWithTag("Player").transform;
+        spawnPoint = GameObject.Find("Vend Spawn").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
+        sprite = rb.GetComponent<SpriteRenderer>();
+        audioData = rb.GetComponent<AudioSource>();
+        audioData.Play(0);
+        sprite.color = new Color(1, 1, 1, 1);
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       int randItem = Random.Range(0, vendingItems.Length);
+       Instantiate(vendingItems[randItem], spawnPoint.position, spawnPoint.rotation);
+    }
+}
+using UnityEngine;
+
+public class WantCoffee : StateMachineBehaviour
+{
+    Transform player;
+    Rigidbody2D rb;
+    public float radius;
+    SpriteRenderer sprite;
+    AudioSource audioData;
+    
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
+        sprite = rb.GetComponent<SpriteRenderer>();
+        audioData = rb.GetComponent<AudioSource>();
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (Vector2.Distance(player.position, rb.position) <= radius)
+        {
+            sprite.color = new Color(1, 1, 1, 1);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                animator.SetTrigger("PlayerWantsCoffee");
+            }
+        }
+        else
+        {
+            sprite.color = new Color(1, 1, 1, 0.9f);
+        }
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.ResetTrigger("PlayerWantsCoffee");
+        audioData.Play(0);
+    }
+}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class cameraMovement : MonoBehaviour
+{
+    public Transform player;
+    public Vector3 offset;
+    public float clampx0, clampx1, clampy0, clampy1;
+    // -3.00f, 24.00f
+    // 0.27f, 4.59f
+    
+    void Update () 
+    {
+        transform.position = new Vector3 (
+            Mathf.Clamp(player.position.x + offset.x, clampx0, clampx1),
+            Mathf.Clamp(player.position.y + offset.y, clampy0, clampy1),
+            offset.z);
+    }
+}

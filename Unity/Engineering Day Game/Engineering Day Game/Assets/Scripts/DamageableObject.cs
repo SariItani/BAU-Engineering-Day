@@ -1,21 +1,34 @@
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 public class DamageableObject : MonoBehaviour
 {
     public int maxhealth = 100;
     public int currentHealth;
+    public int pointforkill;
     public bool invincible = false;
     // player related
     public GameOver gameOver;
     public HealthBar healthBar;
+    public Score score;
+
+    GameObject boss;
 
     void Start()
     {
+        score = GameObject.Find("Score number").GetComponent<Score>();
         currentHealth = maxhealth;
         if (gameObject.tag == "Player")
         {
             healthBar.SetMaxHealth(maxhealth);
         }
+        if (gameObject.tag == "Boss")
+        {
+            healthBar.SetMaxHealth(maxhealth);
+        }
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        Debug.Log(boss);
     }
 
     public void Heal(int heal)
@@ -42,24 +55,31 @@ public class DamageableObject : MonoBehaviour
         {
             healthBar.SetHealth(currentHealth);
         }
+        if (gameObject.tag == "Boss")
+        {
+            healthBar.SetHealth(currentHealth);
+        }
         if (currentHealth <= 0)
         {
             Die();
             if (gameObject.tag == "Player")
             {
+                if (Convert.ToInt32(score.ShowText()) >= Convert.ToInt32(PlayerPrefs.GetString("Highscore", "0")))
+                {
+                    PlayerPrefs.SetString("Highscore", score.ShowText());
+                }
                 gameOver.EndGame();
+            }
+            if (gameObject == boss)
+            {
+                gameOver.WinGame(); // I was able to trace down the issue to this line over here, it doesn't get executed for some reason...
             }
         }
     }
 
-    // public void LateUpdate()
-    // {
-    //     transform.Rotate(0f, 180f, 0f);
-    //     facingRight = !facingRight;
-    // }
-
     void Die()
     {
+        score.ScorePoint(pointforkill);
         Destroy(gameObject);
     }
 
@@ -68,12 +88,10 @@ public class DamageableObject : MonoBehaviour
         try
         {
             obj.GetComponent<DamageableObject>().TakeDamage(damage);
-            Debug.Log("Enemy hit");
         }
         catch (System.NullReferenceException)
         {
             // shut the fuck up unity I KNOW THERE IS NO OBJECT
         }
     }
-
 }

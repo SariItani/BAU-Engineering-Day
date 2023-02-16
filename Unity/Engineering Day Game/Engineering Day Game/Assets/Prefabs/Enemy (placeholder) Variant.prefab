@@ -11,17 +11,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (placeholder) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942001, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942001, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942002, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942002, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942002, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_SortingLayerID
-      value: 454325631
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942004, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918952301130942004, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: distanceBetween
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942005, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: m_RootOrder
@@ -112,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhealth: 50
   currentHealth: 0
+  pointforkill: 1
   invincible: 0
   gameOver: {fileID: 0}
   healthBar: {fileID: 0}
+  score: {fileID: 0}

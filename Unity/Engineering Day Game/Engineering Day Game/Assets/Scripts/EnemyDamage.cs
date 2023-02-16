@@ -16,7 +16,6 @@ public class EnemyDamage : MonoBehaviour
         {
             var player = collision.transform.GetComponent<DamageableObject>();
             player.TakeDamage(damage);
-
         }
     }
 }
