@@ -17,6 +17,7 @@ public class EnemyWalk : StateMachineBehaviour
         boss = GameObject.FindWithTag("Boss");
         animator = boss.GetComponent<Animator>();
 // flipping
+// shahbaz idk what magic you do but plz flip the fucking dude
         Vector3 flipped = boss.transform.localScale;
         flipped.z *= -1f;
         if (boss.transform.position.x > player.transform.position.x && isFlipped)
