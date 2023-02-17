@@ -5,13 +5,15 @@ using System;
 
 public class Score : MonoBehaviour
 {
-    public Text score;
+    public Text score, major;
     public int levelScore;
+    string role;
     int number;
 
     void Start()
     {
         number = 0;
+        major.text = PlayerPrefs.GetString("Major", "Computer");
         score.text = number.ToString();
     }
     
