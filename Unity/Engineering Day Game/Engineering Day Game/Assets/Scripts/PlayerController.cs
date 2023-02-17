@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
         var x_axis = Input.GetAxis("Horizontal");
-        if (isGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)))
+        if (isGrounded && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space)))
         {
             rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
             audioData.clip = hop;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     }
     void Punch()
     {
-        if(Mathf.Abs(speed) > 0.1f)
+        if (Mathf.Abs(speed) > 0.1f)
         {
             animator.SetTrigger("walkattackTrigger");
         }
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
         audioData.clip = punch;
         audioData.Play();
-        
+
         DamageableObject.DamageObject(enemy, punch_damage);
     }
 
