@@ -1557,6 +1557,7 @@ MonoBehaviour:
   - {fileID: 1583904553}
   BEAN:
   - {fileID: 4513132256920630586, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
+  - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
   spawnRate: 3
   disabled: 0
   maxSpawns: 0
