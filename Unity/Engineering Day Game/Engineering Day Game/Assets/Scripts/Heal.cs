@@ -21,7 +21,7 @@ public class Heal : MonoBehaviour
             playerHealth.Heal(health);
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Boss")
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
         }

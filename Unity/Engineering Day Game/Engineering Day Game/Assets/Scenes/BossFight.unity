@@ -1503,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &758474136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,7 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 4448045120973317577}
     - target: {fileID: 1294648060, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
       propertyPath: maxhealth
-      value: 200
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 1294648060, guid: cf3c1b39303068ebdb1b4a46b6303b42, type: 3}
       propertyPath: pointforkill
@@ -3105,7 +3105,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
