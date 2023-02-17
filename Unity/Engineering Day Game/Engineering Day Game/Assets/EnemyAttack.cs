@@ -25,23 +25,20 @@ public class EnemyAttack : StateMachineBehaviour
         Debug.Log("Distance : " + distance);
         Vector3 flipped = boss.transform.localScale;
         flipped.z *= -1f;
-        if (boss.transform.position.x > player.transform.position.x && !isFlipped)
-        {
-            // boss.transform.localScale = flipped;
-            // boss.transform.rotation = (0f, 180f, 0f);
-            boss.transform.Rotate(0f, 180f, 0f);
-            isFlipped = true;
-        }
-        if (boss.transform.position.x < player.transform.position.x && isFlipped)
+        if (boss.transform.position.x > player.transform.position.x && isFlipped)
         {
             // boss.transform.localScale = flipped;
             // boss.transform.rotation = (0f, 180f, 0f);
             boss.transform.Rotate(0f, 180f, 0f);
             isFlipped = false;
         }
-        Debug.Log("isFlipped: " + isFlipped);
-        Debug.Log("playerX : " + player.transform.position.x);
-        Debug.Log("bossX : " + boss.transform.position.x);
+        if (boss.transform.position.x < player.transform.position.x && !isFlipped)
+        {
+            // boss.transform.localScale = flipped;
+            // boss.transform.rotation = (0f, 180f, 0f);
+            boss.transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
