@@ -29,19 +29,19 @@ public class EnemyWalk : StateMachineBehaviour
 // shahbaz idk what magic you do but plz flip the fucking dude
         Vector3 flipped = boss.transform.localScale;
         flipped.z *= -1f;
-        if (boss.transform.position.x > player.transform.position.x && !isFlipped)
-        {
-            boss.transform.localScale = flipped;
-            // boss.transform.rotation = (0f, 180f, 0f);
-            boss.transform.Rotate(0f, 180f, 0f);
-            isFlipped = true;
-        }
-        if (boss.transform.position.x < player.transform.position.x && isFlipped)
+        if (boss.transform.position.x > player.transform.position.x && isFlipped)
         {
             boss.transform.localScale = flipped;
             // boss.transform.rotation = (0f, 180f, 0f);
             boss.transform.Rotate(0f, 180f, 0f);
             isFlipped = false;
+        }
+        if (boss.transform.position.x < player.transform.position.x && !isFlipped)
+        {
+            boss.transform.localScale = flipped;
+            // boss.transform.rotation = (0f, 180f, 0f);
+            boss.transform.Rotate(0f, 180f, 0f);
+            isFlipped = true;
         }
 // transition to attack
         if (Vector2.Distance(player.transform.position, boss.transform.position) <= attackRange)
