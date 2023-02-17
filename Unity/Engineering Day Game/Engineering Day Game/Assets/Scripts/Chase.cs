@@ -13,16 +13,14 @@ public class Chase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // By default, BEAN looks to the right
         var x_diff = (transform.position - player.transform.position).x;
-        if (x_diff >= 0 && Mathf.Abs(transform.rotation.eulerAngles.y) != 180)
-        {
-            // BEAN is to the right of the player, look to the left ( BEAN is originally looking to the right)
-            // so rotate by 180 degrees
-            transform.Rotate(0f, 180f, 0);
-        }
+        // BEAN is to the right of the player, look the left. Look
+        // to the right otherwise
+        Vector3 angle_rotation = x_diff > 0 ? new Vector3(0, -180f, 0) : new(0, 0, 0);
+        transform.eulerAngles = angle_rotation;
+        // Bean is to the left of the player, look to the right
         if (x_diff <= distanceBetween)
-        {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        }
     }
 }
