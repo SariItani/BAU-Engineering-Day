@@ -16,6 +16,15 @@ public class EnemyWalk : StateMachineBehaviour
         player = GameObject.Find("Player");
         boss = GameObject.FindWithTag("Boss");
         animator = boss.GetComponent<Animator>();
+
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       distance = (boss.transform.position - player.transform.position).x;
+       animator.SetFloat("distance", Math.abs(distance));
+       Debug.Log("Distance : " + distance);
 // flipping
 // shahbaz idk what magic you do but plz flip the fucking dude
         Vector3 flipped = boss.transform.localScale;
@@ -39,14 +48,6 @@ public class EnemyWalk : StateMachineBehaviour
         {
             animator.SetTrigger("attack");
         }
-    }
-
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-       distance = (boss.transform.position - player.transform.position).x;
-       animator.SetFloat("distance", distance);
-       Debug.Log("Distance : " + distance);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

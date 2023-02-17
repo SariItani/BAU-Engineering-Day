@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdle : StateMachineBehaviour
+public class EnemyAttack : StateMachineBehaviour
 {
     GameObject player;
     GameObject boss;
@@ -39,5 +39,11 @@ public class EnemyIdle : StateMachineBehaviour
             boss.transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
         }
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+       
     }
 }
