@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int bullet_damage = 10;
+    public int bullet_damage = 25;
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
