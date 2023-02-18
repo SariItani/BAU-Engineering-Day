@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             AttackDelegate = Shoot;
         }
+        // animator.runtimeAnimatorController=Resources.Load<RuntimeAnimatorController>("Computer Engineer.controller");
+        // full path: Assets/Recourses/ComputerEngineer/Computer Engineer.controller
+        // thing i found on the form: animator.runtimeAnimatorController=Resources.Load<RuntimeAnimatorController>("Oinkers/PlayerPiggyOverride");
     }
 
     void FixedUpdate()
