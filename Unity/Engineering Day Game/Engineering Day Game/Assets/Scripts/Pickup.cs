@@ -23,6 +23,7 @@ public class Pickup : MonoBehaviour
         if (collision.gameObject == player)
         {
             giveImage();
+            player.GetComponent<PlayerController>().SetShoot();
             Destroy(gameObject);
         }
     }

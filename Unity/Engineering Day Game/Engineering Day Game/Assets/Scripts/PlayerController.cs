@@ -49,6 +49,15 @@ public class PlayerController : MonoBehaviour
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
 
+        if (canShoot)
+        {
+            AttackDelegate = Shoot;
+        }
+        else
+        {
+            AttackDelegate = Punch;
+        }
+
         transform.position += new Vector3(speed, 0);
 
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
@@ -98,6 +107,7 @@ public class PlayerController : MonoBehaviour
         // make sure to offset correctly depending on direction 
         animator.SetTrigger("throwTrigger");
         animator.ResetTrigger("attackTrigger");
+        canShoot = false;
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
@@ -118,6 +128,11 @@ public class PlayerController : MonoBehaviour
         audioData.Play();
 
         DamageableObject.DamageObject(enemy, punch_damage);
+    }
+
+    public void SetShoot()
+    {
+        canShoot = true;
     }
 
     void OnDrawGizmos()
