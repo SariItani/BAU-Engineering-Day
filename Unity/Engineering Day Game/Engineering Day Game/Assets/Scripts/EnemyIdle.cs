@@ -21,7 +21,7 @@ public class EnemyIdle : StateMachineBehaviour
     {
         distance = (enemy.position - player.transform.position).x;
         animator.SetFloat("distance", Mathf.Abs(distance));
-        Debug.Log("Distance : " + distance);
+        //Debug.Log("Distance : " + distance);
         Vector3 flipped = enemy.localScale;
         flipped.z *= -1f;
         if (enemy.position.x > player.transform.position.x && isFlipped)

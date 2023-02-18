@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8494143993957046544}
   - component: {fileID: 113404882862124824}
   - component: {fileID: 2432973898789220015}
-  - component: {fileID: 5732435079518779347}
+  - component: {fileID: -9018381993896921802}
   m_Layer: 0
   m_Name: Bev1 (4)
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36729813, y: 0.568686}
   m_EdgeRadius: 0
---- !u!114 &5732435079518779347
+--- !u!114 &-9018381993896921802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,9 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5536452809482698068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f966bd118ef6f0d39b7c9e99cc17b3c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a5d9ae15cda39411a0d6651d8e997e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  playerHealth: {fileID: 0}
-  health: 20
+  item: {fileID: 0}

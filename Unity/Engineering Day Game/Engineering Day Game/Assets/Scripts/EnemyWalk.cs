@@ -22,7 +22,7 @@ public class EnemyWalk : StateMachineBehaviour
     {
        distance = (enemy.position - player.transform.position).x;
        animator.SetFloat("distance", Mathf.Abs(distance));
-       Debug.Log("Distance : " + distance);
+       //Debug.Log("Distance : " + distance);
 // flipping
 // shahbaz idk what magic you do but plz flip the fucking dude
         Vector3 flipped = enemy.localScale;
