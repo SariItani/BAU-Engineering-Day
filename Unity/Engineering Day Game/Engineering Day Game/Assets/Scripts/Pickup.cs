@@ -12,7 +12,7 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         item = GameObject.Find("Item").GetComponent<Image>();
     }

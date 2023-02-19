@@ -7,7 +7,7 @@ public class EnemyDamage : MonoBehaviour
 
     void Start()
     {
-        damageableObject = GameObject.Find("Player").GetComponent<DamageableObject>();
+        damageableObject = GameObject.FindGameObjectWithTag("Player").GetComponent<DamageableObject>();
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

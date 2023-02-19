@@ -12,7 +12,7 @@ public class AnimationEventListener : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         audiosource = gameObject.GetComponent<AudioSource>();
     }
     public void EventListener(int damage)
