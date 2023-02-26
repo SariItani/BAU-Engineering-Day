@@ -6,15 +6,22 @@ using System;
 public class Score : MonoBehaviour
 {
     public Text score, major;
-    public int levelScore;
-    string role;
+    // public int levelScore;
+    // string role;
     int number;
 
     void Start()
     {
         number = 0;
         major.text = PlayerPrefs.GetString("Major", "Computer");
-        score.text = number.ToString();
+        try
+        {
+            score.text = number.ToString();
+        }
+        catch
+        {
+            Debug.Log("There is no score");
+        }
     }
     
     public void ScorePoint(int points)
@@ -25,10 +32,10 @@ public class Score : MonoBehaviour
         {
             PlayerPrefs.SetString("Highscore", score.text);
         }
-        if (number >= levelScore)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        // if (number >= levelScore)
+        // {
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // }
     }
 
     public string ShowText()

@@ -17,20 +17,30 @@ public class DamageableObject : MonoBehaviour
 
     void Start()
     {
-        healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
-        gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
-        score = GameObject.Find("Score number").GetComponent<Score>();
-        currentHealth = maxhealth;
+        try
+            {
+                score = GameObject.Find("Score number").GetComponent<Score>();
+            }
+            catch
+            {
+                Debug.Log("There is no score..");
+            }
         if (gameObject.tag == "Player")
         {
-            healthBar.SetMaxHealth(maxhealth);
+            healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
+            gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
         }
-        if (gameObject.tag == "Boss")
+        else if (gameObject.tag == "Boss")
+        {
+            healthBar = GameObject.Find("Health bar (Boss)").GetComponent<HealthBar>();
+            gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
+        }
+        currentHealth = maxhealth;
+        if (gameObject.tag == "Player" || gameObject.tag == "Boss")
         {
             healthBar.SetMaxHealth(maxhealth);
         }
         boss = GameObject.FindGameObjectWithTag("Boss");
-        // Debug.Log(boss);
     }
 
     public void Heal(int heal)
@@ -53,11 +63,7 @@ public class DamageableObject : MonoBehaviour
     {
         if (!invincible)
             currentHealth -= damage;
-        if (gameObject.tag == "Player")
-        {
-            healthBar.SetHealth(currentHealth);
-        }
-        if (gameObject.tag == "Boss")
+        if (gameObject.tag == "Player" || gameObject.tag == "Boss")
         {
             healthBar.SetHealth(currentHealth);
         }
@@ -81,7 +87,14 @@ public class DamageableObject : MonoBehaviour
 
     void Die()
     {
-        score.ScorePoint(pointforkill);
+        try
+        {
+            score.ScorePoint(pointforkill);
+        }
+        catch
+        {
+            Debug.Log("There is no score");
+        }
         Destroy(gameObject);
     }
 
@@ -96,4 +109,12 @@ public class DamageableObject : MonoBehaviour
             // shut the fuck up unity I KNOW THERE IS NO OBJECT
         }
     }
+
+    // public void SetForPlayer()
+    // {
+    //     healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
+    //     gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
+    //     score = GameObject.Find("Score number").GetComponent<Score>();
+    // }
+
 }

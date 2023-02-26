@@ -2293,6 +2293,7 @@ MonoBehaviour:
   - {fileID: 6249378260657077468, guid: 5101b741da4b5a225a74899c3d45e4d4, type: 3}
   - {fileID: 7543291460804317230, guid: 453fb99f665d8407c8bd76bb267305ff, type: 3}
   spawnPoint: {fileID: 971180461}
+  cameraMovement: {fileID: 0}
 --- !u!4 &971180461
 Transform:
   m_ObjectHideFlags: 0
@@ -5914,7 +5915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 2062377735}
   major: {fileID: 1890246986}
-  levelScore: 30
 --- !u!114 &1890246986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6400,7 +6400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 2062377735}
   major: {fileID: 1890246986}
-  levelScore: 30
 --- !u!114 &2062377735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7135,6 +7134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8028486008925100818, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
+      propertyPath: levelTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8028486008925100819, guid: 1ca2d09995500e12fa67df9d4ae56ade, type: 3}
       propertyPath: m_RootOrder
       value: 0

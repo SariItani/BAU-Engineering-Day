@@ -3,6 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public float timer;
+    public float levelTime;
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (levelTime > 0)
+        {
+            if (timer > levelTime)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+    }
+
     public void EndGame()
     {
         Debug.Log("Game Over.");
@@ -11,7 +26,7 @@ public class GameOver : MonoBehaviour
 
     public void WinGame()
     {
-        Debug.Log("YOU WIN!!!");
+        Debug.Log("Next Level running...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
