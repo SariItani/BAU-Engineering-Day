@@ -9,6 +9,11 @@ public class cameraMovement : MonoBehaviour
     public float clampx0, clampx1, clampy0, clampy1;
     // -3.00f, 24.00f
     // 0.27f, 4.59f
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
     
     void Update () 
     {

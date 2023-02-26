@@ -69,10 +69,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Player speed determination
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            AttackDelegate();
-        }
         if (Mathf.Abs(x_axis) > 0)
 
         {
@@ -92,7 +88,6 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-
         transform.Rotate(0f, 180f, 0f);
         facingRight = !facingRight;
     }
@@ -121,11 +116,8 @@ public class PlayerController : MonoBehaviour
         audioData.Play();
 
         DamageableObject.DamageObject(enemy, punch_damage);
-    }
-
-    public void SetShoot()
-    {
-        canShoot = true;
+        // animator.ResetTrigger("attackTrigger");
+        // animator.ResetTrigger("walkattackTrigger");
     }
 
     void OnDrawGizmos()
