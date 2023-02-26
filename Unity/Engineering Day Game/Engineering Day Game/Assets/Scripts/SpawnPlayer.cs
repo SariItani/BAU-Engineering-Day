@@ -14,7 +14,7 @@ public class SpawnPlayer : MonoBehaviour
     void Start()
     {
         cameraMovement = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<cameraMovement>();
-        majorIndex = PlayerPrefs.GetInt("MajorIndex", 0);
+        majorIndex = PlayerPrefs.GetInt("MajorIndex");
         // Computer 0
         // yada yada yada
         Debug.Log("Activated Game... Loading major index: " + majorIndex);
