@@ -22,4 +22,9 @@ public class cameraMovement : MonoBehaviour
             Mathf.Clamp(player.position.y + offset.y, clampy0, clampy1),
             offset.z);
     }
+
+    public void SetPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
 }

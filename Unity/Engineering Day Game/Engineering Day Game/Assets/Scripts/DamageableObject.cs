@@ -17,6 +17,8 @@ public class DamageableObject : MonoBehaviour
 
     void Start()
     {
+        healthBar = GameObject.Find("Health bar").GetComponent<HealthBar>();
+        gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
         score = GameObject.Find("Score number").GetComponent<Score>();
         currentHealth = maxhealth;
         if (gameObject.tag == "Player")
