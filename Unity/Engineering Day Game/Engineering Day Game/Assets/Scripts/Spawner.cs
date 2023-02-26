@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public GameObject[] BEAN;
+    int majorIndex;
 
     public float spawnRate;
     public bool disabled = false;
@@ -17,6 +18,9 @@ public class Spawner : MonoBehaviour
     {
         if (disabled)
             maxSpawns = -1;
+        majorIndex = PlayerPrefs.GetInt("Major Index");
+        // BEAN.RemoveAt(majorIndex);
+        // make the randEnemy range from [0, major index] [major index+1, BEAN.length]
     }
 
     // Update is called once per frame
@@ -26,6 +30,10 @@ public class Spawner : MonoBehaviour
         {
             nextSpawn = Time.time + spawnRate;
             int randEnemy = Random.Range(0, BEAN.Length);
+            while (randEnemy == majorIndex)
+            {
+                randEnemy = Random.Range(0, BEAN.Length);
+            }
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(BEAN[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
             spawns++;

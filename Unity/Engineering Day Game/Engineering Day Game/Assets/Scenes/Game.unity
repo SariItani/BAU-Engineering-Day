@@ -1557,9 +1557,15 @@ MonoBehaviour:
   - {fileID: 462448321}
   - {fileID: 1583904553}
   BEAN:
+  - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
   - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
-  - {fileID: 309566371537015459, guid: a2e24c9893d989eccb1bb7de96eed51b, type: 3}
-  spawnRate: 3
+  - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
+  - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
+  - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
+  - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
+  - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
+  - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
+  spawnRate: 4
   disabled: 0
   maxSpawns: 0
 --- !u!4 &758474137
