@@ -125,3 +125,25 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(pushed_vector, attack_radius);
     }
 }
+
+// I found this method online, and want to utilize it for the spawner
+
+// public float delay = 3;
+// float timer;
+// bool running = true;
+// void Update()
+// {
+//     if (running)
+//     {
+//         timer += Time.deltaTime;
+//         if (timer > delay)
+//         {
+//             MyFunction();
+//             running = false;
+//         }
+//     }
+// }
+// void MyFunction()
+// {
+//     // Do something!
+// }
