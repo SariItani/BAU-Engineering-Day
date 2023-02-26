@@ -23,7 +23,8 @@ public class Pickup : MonoBehaviour
         if (collision.gameObject == player)
         {
             giveImage();
-            player.GetComponent<PlayerController>().SetShoot();
+            var player_controller =player.GetComponent<PlayerController>();
+            player_controller.AttackDelegate = player_controller.Shoot;
             Destroy(gameObject);
         }
     }

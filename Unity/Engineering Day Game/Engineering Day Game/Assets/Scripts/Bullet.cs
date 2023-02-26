@@ -31,4 +31,10 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player.AttackDelegate = player.Punch;
+    }
 }
