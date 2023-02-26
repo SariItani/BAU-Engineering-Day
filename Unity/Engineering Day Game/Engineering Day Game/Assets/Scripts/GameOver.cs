@@ -29,4 +29,9 @@ public class GameOver : MonoBehaviour
         Debug.Log("Next Level running...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public float ShowTimer()
+    {
+        return timer;
+    }
 }
