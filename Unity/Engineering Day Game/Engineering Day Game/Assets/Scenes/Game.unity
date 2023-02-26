@@ -1567,7 +1567,7 @@ MonoBehaviour:
   - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
   - {fileID: 3398983984357696543, guid: 6975bbdf548673d55a34079c41d670be, type: 3}
   - {fileID: 3398983984357696543, guid: fb0908d063e29b2c3992e9bfdd316daf, type: 3}
-  spawnRate: 3
+  spawnRate: 2
   disabled: 0
   maxSpawns: 0
 --- !u!4 &758474137
