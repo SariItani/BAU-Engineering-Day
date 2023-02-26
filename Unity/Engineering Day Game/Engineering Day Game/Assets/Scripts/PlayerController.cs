@@ -57,6 +57,24 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
+            if (AttackDelegate == Punch && speed > 0.1f)
+            {
+                animator.SetTrigger("walkattackTrigger");
+                animator.ResetTrigger("attackTrigger");
+                animator.ResetTrigger("throwTrigger");
+            }
+            else if (AttackDelegate == Punch && speed < 0.1f)
+            {
+                animator.SetTrigger("attackTrigger");
+                animator.ResetTrigger("walkattackTrigger");
+                animator.ResetTrigger("throwTrigger");
+            }
+            else if (AttackDelegate == Shoot)
+            {
+                animator.SetTrigger("throwTrigger");
+                animator.ResetTrigger("attackTrigger");
+                animator.ResetTrigger("walkattackTrigger");
+            }
         }
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundDistance, groundMask);
@@ -94,23 +112,23 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
         // make sure to offset correctly depending on direction 
-        animator.SetTrigger("throwTrigger");
-        animator.ResetTrigger("attackTrigger");
+        // animator.SetTrigger("throwTrigger");
+        // animator.ResetTrigger("attackTrigger");
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
     }
     public void Punch()
     {
-        if (Mathf.Abs(speed) > 0.1f)
-        {
-            animator.SetTrigger("walkattackTrigger");
-        }
-        else
-        {
-            animator.SetTrigger("attackTrigger");
-        }
-        animator.ResetTrigger("throwTrigger");
+        // if (Mathf.Abs(speed) > 0.1f)
+        // {
+        //     animator.SetTrigger("walkattackTrigger");
+        // }
+        // else
+        // {
+        //     animator.SetTrigger("attackTrigger");
+        // }
+        // animator.ResetTrigger("throwTrigger");
         Collider2D enemy = Physics2D.OverlapCircle(pushed_vector, attack_radius);
         audioData.clip = punch;
         audioData.Play();
