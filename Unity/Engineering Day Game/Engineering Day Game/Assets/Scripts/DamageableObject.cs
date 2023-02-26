@@ -28,7 +28,7 @@ public class DamageableObject : MonoBehaviour
             healthBar.SetMaxHealth(maxhealth);
         }
         boss = GameObject.FindGameObjectWithTag("Boss");
-        Debug.Log(boss);
+        // Debug.Log(boss);
     }
 
     public void Heal(int heal)
