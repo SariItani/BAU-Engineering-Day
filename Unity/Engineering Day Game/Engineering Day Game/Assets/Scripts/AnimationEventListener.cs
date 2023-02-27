@@ -8,11 +8,20 @@ public class AnimationEventListener : MonoBehaviour
 
     AudioSource audiosource;
     public AudioClip punch;
+    public float multiplier;
 
     public int attackRadius = 2;
 
     void Start()
     {
+        if (gameObject.tag == "Boss")
+        {
+            multiplier = 3.0f;
+        }
+        else
+        {
+            multiplier = 1.0f;
+        }
         player = GameObject.FindGameObjectWithTag("Player");
         audiosource = gameObject.GetComponent<AudioSource>();
     }
@@ -22,7 +31,7 @@ public class AnimationEventListener : MonoBehaviour
         {
             audiosource.clip = punch;
             audiosource.Play();
-            player.GetComponent<DamageableObject>().TakeDamage(damage);
+            player.GetComponent<DamageableObject>().TakeDamage((int)(damage * multiplier));
         }
     }
 }
