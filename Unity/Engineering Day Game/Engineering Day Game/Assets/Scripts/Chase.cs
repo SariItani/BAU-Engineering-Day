@@ -51,4 +51,10 @@ public class Chase : MonoBehaviour
     {
         return isGrounded;
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+    }
 }

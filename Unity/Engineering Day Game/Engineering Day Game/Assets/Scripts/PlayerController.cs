@@ -138,6 +138,8 @@ public class PlayerController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(pushed_vector, attack_radius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 }
 
