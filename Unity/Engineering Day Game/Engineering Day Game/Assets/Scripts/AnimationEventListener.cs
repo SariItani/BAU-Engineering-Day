@@ -7,6 +7,7 @@ public class AnimationEventListener : MonoBehaviour
     GameObject player;
 
     AudioSource audiosource;
+    public AudioClip punch;
 
     public int attackRadius = 2;
 
@@ -19,6 +20,7 @@ public class AnimationEventListener : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.transform.position) <= attackRadius)
         {
+            audiosource.clip = punch;
             audiosource.Play();
             player.GetComponent<DamageableObject>().TakeDamage(damage);
         }
