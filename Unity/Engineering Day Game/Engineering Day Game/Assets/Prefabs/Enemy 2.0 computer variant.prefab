@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e8e36b85d9278168e49a76dba0b0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   distanceBetween: 20
   isGrounded: 0
   groundDistance: 0.1
@@ -220,9 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd28796f66389116bad8fc3b0985c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 50
+  maxhealth: 75
   currentHealth: 0
-  pointforkill: 1
+  pointforkill: 2
   invincible: 0
   gameOver: {fileID: 0}
   healthBar: {fileID: 0}
