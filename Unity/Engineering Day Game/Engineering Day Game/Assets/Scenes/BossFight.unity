@@ -852,8 +852,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   offset: {x: 0, y: 1.5, z: -10}
-  clampx0: -21.06
-  clampx1: 32.43
+  clampx0: -19.4
+  clampx1: 30.7
   clampy0: -1.86
   clampy1: 2.56
 --- !u!82 &386884144
@@ -1126,7 +1126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386884142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.05, y: 2.56, z: -0.3}
+  m_LocalPosition: {x: -21.57, y: 2.56, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
