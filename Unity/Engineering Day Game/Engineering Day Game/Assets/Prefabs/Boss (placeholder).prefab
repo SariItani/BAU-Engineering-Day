@@ -52,6 +52,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918952301130942004, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+      propertyPath: hop
+      value: 
+      objectReference: {fileID: 8300000, guid: a65f8fb97f42aa97cbce76c6ed21dc6f, type: 3}
+    - target: {fileID: 4918952301130942004, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
@@ -137,31 +141,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4918952301130942003, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
+    - {fileID: 4918952301130942007, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
 --- !u!1 &1922096751002244280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4918952301130942001, guid: ad4f506677ac6e1c28277d34cd9229aa, type: 3}
   m_PrefabInstance: {fileID: 6840697087079469705}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1662755957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922096751002244280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd28796f66389116bad8fc3b0985c94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxhealth: 200
-  currentHealth: 0
-  pointforkill: 10
-  invincible: 0
-  gameOver: {fileID: 0}
-  healthBar: {fileID: 0}
-  score: {fileID: 0}
 --- !u!61 &1892177493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -304,6 +290,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1662755957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922096751002244280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd28796f66389116bad8fc3b0985c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 200
+  currentHealth: 0
+  pointforkill: 10
+  invincible: 0
+  gameOver: {fileID: 0}
+  healthBar: {fileID: 0}
+  score: {fileID: 0}
 --- !u!114 &1892177500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,4 +321,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fb38c0e956b8336999639399713047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punch: {fileID: 8300000, guid: 74314b65df35a051b8312f441596bd80, type: 3}
   attackRadius: 2
