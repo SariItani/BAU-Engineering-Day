@@ -1526,6 +1526,7 @@ MonoBehaviour:
   spawnRate: 6
   disabled: 0
   maxSpawns: 10
+  nextSpawn: 4
 --- !u!1 &758474135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,6 +1571,7 @@ MonoBehaviour:
   spawnRate: 2
   disabled: 0
   maxSpawns: 0
+  nextSpawn: 4
 --- !u!4 &758474137
 Transform:
   m_ObjectHideFlags: 0
@@ -6810,6 +6812,7 @@ MonoBehaviour:
   spawnRate: 3
   disabled: 0
   maxSpawns: 0
+  nextSpawn: 4
 --- !u!4 &2126573889
 Transform:
   m_ObjectHideFlags: 0
@@ -7042,11 +7045,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx0
-      value: -4.58
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx1
-      value: 25.41
+      value: 23.7
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampy0
@@ -7066,7 +7069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.58
+      value: -5.42
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.y

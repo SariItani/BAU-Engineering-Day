@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
 
