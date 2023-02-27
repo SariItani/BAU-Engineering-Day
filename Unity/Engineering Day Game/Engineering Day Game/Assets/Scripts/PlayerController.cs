@@ -54,13 +54,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
             AttackDelegate();
-            if (AttackDelegate == Punch && speed > 0.1f)
+            if (AttackDelegate == Punch && Mathf.Abs(speed) > 0.1f)
             {
                 animator.SetTrigger("walkattackTrigger");
                 animator.ResetTrigger("attackTrigger");
                 animator.ResetTrigger("throwTrigger");
             }
-            else if (AttackDelegate == Punch && speed < 0.1f)
+            else if (AttackDelegate == Punch && Mathf.Abs(speed) < 0.1f)
             {
                 animator.SetTrigger("attackTrigger");
                 animator.ResetTrigger("walkattackTrigger");
