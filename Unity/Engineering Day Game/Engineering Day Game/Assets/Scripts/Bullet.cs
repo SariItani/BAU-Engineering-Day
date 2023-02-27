@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour
     {
         if (other.GetComponent<DamageableObject>() != null)
         {
-            // Debug.Log("Enemy hit");
             audioData.Play();
             other.GetComponent<DamageableObject>().TakeDamage(bullet_damage);
             Destroy(gameObject);

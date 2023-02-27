@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
@@ -30,10 +31,15 @@ public class Spawner : MonoBehaviour
         {
             nextSpawn = Time.time + spawnRate;
             int randEnemy = Random.Range(0, BEAN.Length);
+            Debug.Log("randEnemy: " + randEnemy);
             while (randEnemy == majorIndex)
             {
                 randEnemy = Random.Range(0, BEAN.Length);
+                Debug.Log("randEnemy: " + randEnemy);
             }
+            // int[] numbers = { 1, 3, 4, 9, 2 };
+            // int numToRemove = 4;
+            // numbers = numbers.Where(val => val != numToRemove).ToArray();
             int randSpawnPoint = Random.Range(0, spawnPoints.Length);
             Instantiate(BEAN[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
             spawns++;
