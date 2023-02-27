@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         pushed_vector = shoot_pos.position + Utils.ToVector3(Direction * x_offset);
 
-        transform.position += new Vector3(speed, 0);
+        transform.position += new Vector3(speed * Time.deltaTime, 0);
 
         if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(x_axis) > 0)
 
         {
-            speed = Mathf.Sign(x_axis) * 0.15f;
+            speed = Mathf.Sign(x_axis) * 10f;
         }
         else
         {

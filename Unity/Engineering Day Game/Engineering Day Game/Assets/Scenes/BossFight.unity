@@ -852,8 +852,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   offset: {x: 0, y: 1.5, z: -10}
-  clampx0: -21.93
-  clampx1: 32.97
+  clampx0: -21.5
+  clampx1: 32.8
   clampy0: -1.86
   clampy1: 2.56
 --- !u!82 &386884144
