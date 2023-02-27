@@ -4,18 +4,13 @@ public class Chase : MonoBehaviour
 {
     public float speed, distanceBetween;
     private GameObject player;
-    bool isGrounded;
+    public bool isGrounded;
     Transform groundCheck;
     public float groundDistance = 0.1f, jumpforce = 20.0f;
     public LayerMask groundMask;
     AudioSource audioData;
     public AudioClip hop;
     Rigidbody2D rb;
-    // 
-    // NOTE
-    // 
-    // PLACE GROUND CHECKS AND INITIALIZE AUDIO SOURCE CLIPS
-    // 
 
     void Start()
     {
@@ -50,5 +45,10 @@ public class Chase : MonoBehaviour
             audioData.clip = hop;
             audioData.Play();
         }
+    }
+
+    public bool IsGrounded()
+    {
+        return isGrounded;
     }
 }

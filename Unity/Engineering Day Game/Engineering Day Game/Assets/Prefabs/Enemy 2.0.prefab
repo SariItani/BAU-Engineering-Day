@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3398983984357696541}
   - component: {fileID: 3398983984357696542}
   - component: {fileID: 3398983984357696538}
-  - component: {fileID: 3398983984357696537}
   - component: {fileID: 1263893069268734937}
   - component: {fileID: 1263893069268734943}
   - component: {fileID: 1263893069268734942}
@@ -144,25 +143,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   distanceBetween: 20
+  isGrounded: 0
   groundDistance: 0.1
   jumpforce: 20
   groundMask:
     serializedVersion: 2
     m_Bits: 128
   hop: {fileID: 8300000, guid: a65f8fb97f42aa97cbce76c6ed21dc6f, type: 3}
---- !u!114 &3398983984357696537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3398983984357696543}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ec1a70294295cc48bd8353724385b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!114 &1263893069268734937
 MonoBehaviour:
   m_ObjectHideFlags: 0

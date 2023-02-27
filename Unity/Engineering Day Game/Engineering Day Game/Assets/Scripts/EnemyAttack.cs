@@ -8,17 +8,22 @@ public class EnemyAttack : StateMachineBehaviour
     Transform enemy;
     float distance;
     public bool isFlipped = false;
+    public bool isGrounded;
+    public Chase chase;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemy = animator.GetComponent<Transform>();
+        chase = animator.GetComponent<Chase>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        isGrounded = chase.IsGrounded();
+        animator.SetBool("OnGround", isGrounded);
         distance = (enemy.position - player.transform.position).x;
         animator.SetFloat("distance", Mathf.Abs(distance));
         //Debug.Log("Distance : " + distance);
