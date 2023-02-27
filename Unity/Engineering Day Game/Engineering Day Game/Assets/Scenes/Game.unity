@@ -7028,6 +7028,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -753158549293840148, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6519f77650ff72824a2696cd62ee1e84, type: 3}
     - target: {fileID: 25374757011861291, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_Name
       value: Main Camera
