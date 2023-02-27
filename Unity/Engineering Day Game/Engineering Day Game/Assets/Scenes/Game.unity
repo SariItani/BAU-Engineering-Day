@@ -7146,11 +7146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx0
-      value: -2.9
+      value: -5.42
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampx1
-      value: 23.7
+      value: 26.17
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861462, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: clampy0
@@ -7170,7 +7170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.42
+      value: 26.17
       objectReference: {fileID: 0}
     - target: {fileID: 25374757011861463, guid: b806b5f654454bd209e3a5b38f58ee83, type: 3}
       propertyPath: m_LocalPosition.y
