@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
         var bullet_obj = Instantiate(bullet_prefab, pushed_vector, shoot_pos.rotation);
         // clean up the bullet if it goes out of bounds
         Destroy(bullet_obj, bullet_cleanuptime);
+        // AttackDelegate = Punch;
     }
     public void Punch()
     {
