@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     public Image item;
     public float speed = 20;
     public LayerMask layer;
+    public GameOver gameOver;
 
     void Start()
     {
@@ -22,12 +23,13 @@ public class Bullet : MonoBehaviour
         item.sprite = null;
         item.color = new Color(1f, 1f, 1f, 0f);
         audioData = gameObject.GetComponent<AudioSource>();
+        gameOver = GameObject.Find("Manager").GetComponent<GameOver>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<DamageableObject>() != null)
         {
-            audioData.Play();
+            gameOver.PlayThud();
             other.GetComponent<DamageableObject>().TakeDamage(bullet_damage);
             Destroy(gameObject);
         }

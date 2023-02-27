@@ -5,6 +5,12 @@ public class GameOver : MonoBehaviour
 {
     public float timer;
     public float levelTime;
+    public AudioSource audioData;
+
+    void Start()
+    {
+        audioData = gameObject.GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -33,5 +39,10 @@ public class GameOver : MonoBehaviour
     public float ShowTimer()
     {
         return timer;
+    }
+
+    public void PlayThud()
+    {
+        audioData.Play();
     }
 }
